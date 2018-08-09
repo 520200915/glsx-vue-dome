@@ -9,7 +9,7 @@
             <gl-table :table='table'></gl-table>
         </template>
         <template slot='description'>
-            <p>当<code>gl-table</code>元素中注入<code>table</code>对象后，<code>data</code>为数据 ，中用<code>column</code>数组来对应对象中的键名即可填入数据，用<code>label</code>属性来定义表格的列名。<code>prop</code>属性来定义列表需要渲染的数据，可以使用<code>width</code>属性来定义列宽。<code>export</code>显示导出表格按钮</p>
+            <p>当<code>gl-table</code>元素中注入<code>table</code>对象后，<code>data</code>为数据 ，中用<code>column</code>数组来对应对象中的键名即可填入数据，用<code>label</code>属性来定义表格的列名。<code>prop</code>属性来定义列表需要渲染的数据，可以使用<code>width</code>属性来定义列宽。<code>export</code>显示导出表格组件</p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -25,22 +25,22 @@
                                     <span class="hljs-attr">data:</span> [
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎1'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎2'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎3'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎4'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         }
                                     ],
@@ -752,7 +752,7 @@
                 <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">gl-table</span>&nbsp;<span class="hljs-attr">:table</span>=<span class="hljs-string">"table9"</span>&nbsp;<span class="hljs-attr">ref</span>=<span class="hljs-string">"multipleTable"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-table</span>&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-top: 20px"</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">gl-button</span> <span class="hljs-attr">@click</span>=<span class="hljs-string">"toggleSelection([tableData3[0], tableData3[3]])"</span>&gt;</span>切换第一、第四行的选中状态<span class="hljs-tag">&lt;/<span class="hljs-name">gl-button</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">gl-button</span> <span class="hljs-attr">@click</span>=<span class="hljs-string">"toggleSelection([table9.data[0], table9.data[3]])"</span>&gt;</span>切换第一、第四行的选中状态<span class="hljs-tag">&lt;/<span class="hljs-name">gl-button</span>&gt;</span>
                         <span class="hljs-tag">&lt;<span class="hljs-name">gl-button</span> <span class="hljs-attr">@click</span>=<span class="hljs-string">"toggleSelection()"</span>&gt;</span>取消选择<span class="hljs-tag">&lt;/<span class="hljs-name">gl-button</span>&gt;</span>
                     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
                 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
@@ -764,22 +764,22 @@
                                     <span class="hljs-attr">data:</span> [
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎1'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎2'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎3'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎4'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                         }
                                     ],
@@ -900,7 +900,7 @@
             <gl-table :table='table11'></gl-table>
         </template>
         <template slot='description'>
-            <p>通过传入 <code>collapse</code>对象，指定展开行内容。</p>
+            <p>通过传入 <code>collapse</code>对象，指定展开行内容。展开行样式可通过传入 <code>className</code> 属性进行重置。</p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -914,8 +914,8 @@
                                 <span class="hljs-attr">table11:</span>: {
                                     <span class="hljs-attr">data:</span> [
                                         {
-                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'9527'</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'去皮嚼嚼鸡'</span>,
+                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'0755'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'竹鼠'</span>,
                                             <span class="hljs-attr">category:</span> <span class="hljs-string">'小吃零食'</span>.
                                             <span class="hljs-attr">desc:</span> <span class="hljs-string">'3元1只，10元3只'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市'</span>,
@@ -923,8 +923,8 @@
                                             <span class="hljs-attr">shopId:</span> <span class="hljs-string">'2333'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'9527'</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'去皮嚼嚼鸡'</span>,
+                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'0755'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'竹鼠'</span>,
                                             <span class="hljs-attr">category:</span> <span class="hljs-string">'小吃零食'</span>.
                                             <span class="hljs-attr">desc:</span> <span class="hljs-string">'3元1只，10元3只'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市'</span>,
@@ -932,8 +932,8 @@
                                             <span class="hljs-attr">shopId:</span> <span class="hljs-string">'2333'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'9527'</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'去皮嚼嚼鸡'</span>,
+                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'0755'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'竹鼠'</span>,
                                             <span class="hljs-attr">category:</span> <span class="hljs-string">'小吃零食'</span>.
                                             <span class="hljs-attr">desc:</span> <span class="hljs-string">'3元1只，10元3只'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市'</span>,
@@ -941,8 +941,8 @@
                                             <span class="hljs-attr">shopId:</span> <span class="hljs-string">'2333'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'9527'</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'去皮嚼嚼鸡'</span>,
+                                            <span class="hljs-attr">id:</span> <span class="hljs-string">'0755'</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'竹鼠'</span>,
                                             <span class="hljs-attr">category:</span> <span class="hljs-string">'小吃零食'</span>.
                                             <span class="hljs-attr">desc:</span> <span class="hljs-string">'3元1只，10元3只'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市'</span>,
@@ -977,14 +977,14 @@
             </code></pre>
         </template>
     </Code>
-    <h3>表格分页</h3>
-    <p>当数据过多是可以分页加载</p>
+    <h3>表格分页 - 1</h3>
+    <p>当数据过多时可以分页显示，第一种方式。</p>
     <Code>
         <template slot='source'>
             <gl-table :table='table12' :pagination='pagination'></gl-table>
         </template>
         <template slot='description'>
-            <p>只需在 <code>gl-table</code>里加入 <code>pagination</code>对象，并设置属性 <code>show</code>为true即可显示分页，更多属性请查看分页组件。</p>
+            <p>只需在 <code>gl-table</code>里加入 <code>pagination</code>对象，并设置属性 <code>show</code>为true即可显示分页，更多属性请查看 <router-link to="/Pagination">分页组件</router-link> 。</p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -1029,20 +1029,84 @@
                                     ],
                                     pagination: {
                                         show: true,
-                                        background: true,
+                                        layout:"total, sizes, prev, pager, next, jumper",
                                         style: {
-                                        marginTop: '20px'
+                                            marginTop: '20px'
                                         }
                                     }                               
                                 }
                             }
-                        },
-                        created() {
-                            axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
-                                this.table12.data = res.data.data.items
-                            }).catch( err => {
-                                console.log(err)
-                            })
+                        }
+                    }
+                </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+            </code></pre>
+        </template>
+    </Code>
+    <h3>表格分页 - 2</h3>
+    <p>当数据过多时可以分页显示，第二种方式。</p>
+    <Code>
+        <template slot='source'>
+            <gl-table :table='table14' :pagination='pagination2'></gl-table>
+        </template>
+        <template slot='description'>
+            <p>使用<code>formatter</code>格式化数据。<code>api</code>返回的数据类型为data.data。</p>
+        </template>
+        <template slot='highlight'>
+            <pre><code class="hljs language-html">
+                <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">gl-table</span>&nbsp;<span class="hljs-attr">:table14</span>=<span class="hljs-string">"table12"</span>&nbsp;<span class="hljs-attr">:pagination</span>=<span class="hljs-string">"pagination2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-table</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+                    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+                        data() {
+                            <span class="hljs-keyword">return</span> {
+                                <span class="hljs-attr">table14:</span>: {
+                                    border: 'true',
+                                    maxHeight: '450',
+                                    align: 'center',
+                                    <span class="hljs-attr">api:</span> 'http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list',
+                                    <span class="hljs-attr">column:</span> [
+                                        {
+                                            label: 'ID',
+                                            prop: 'id'
+                                        },
+                                        {
+                                            label: '地区',
+                                            prop: 'citys',
+                                            formatter:(row, column, cellValue, index) => {
+                                                return cellValue.substring(0, 6) + `（index：${index} ）\n：${index}`
+                                            }
+                                        },
+                                        {
+                                            label: '日期',
+                                            prop: 'date'
+                                        },
+                                        {
+                                            label: '文本',
+                                            prop: 'txt'',
+                                            formatter:(row, column, cellValue, index) => {
+                                                return index === 0 ? '苟利国家生死以' : index === 1 ? '岂因祸福避趋之' : cellValue
+                                            }
+                                        },
+                                        {
+                                            label: '乱码'',
+                                            prop: 'guid'
+                                        },
+                                        {
+                                            label: '图片路径',
+                                            prop: 'image'
+                                        }
+                                    ],
+                                    pagination2: {
+                                        show: true,
+                                        background: true,
+                                        layout:"total, sizes, prev, pager, next, jumper",
+                                        style: {
+                                            marginTop: '20px'
+                                        }
+                                    }                               
+                                }
+                            }
                         }
                     }
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -1069,8 +1133,6 @@
 </template>
 
 <script type='text/ecmascript-6'>
-import axios from 'axios'
-import date from '../js/date.js'
   export default {
     name: '',
     data () {
@@ -1080,22 +1142,22 @@ import date from '../js/date.js'
             data: [
               {
               date: new Date().format("yyyy-MM-dd"),
-              name: '嘀嘀虎',
+              name: '嘀嘀虎1',
               address: '深圳市南山区科兴科学园C3栋7楼'
               },
               {
               date: new Date().format("yyyy-MM-dd"),
-              name: '嘀嘀虎',
+              name: '嘀嘀虎2',
               address: '深圳市南山区科兴科学园C3栋7楼'
               },
               {
               date: new Date().format("yyyy-MM-dd"),
-              name: '嘀嘀虎',
+              name: '嘀嘀虎3',
               address: '深圳市南山区科兴科学园C3栋7楼'
               },
               {
               date: new Date().format("yyyy-MM-dd"),
-              name: '嘀嘀虎',
+              name: '嘀嘀虎4',
               address: '深圳市南山区科兴科学园C3栋7楼'
               }
             ],
@@ -1520,25 +1582,26 @@ import date from '../js/date.js'
               number: {}
           },
           table9: {
+              export: true,
               data: [
                   {
                   date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  name: '嘀嘀虎1',
                   address: '深圳市南山区科兴科学园C3栋7楼'
                   },
                   {
                   date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  name: '嘀嘀虎2',
                   address: '深圳市南山区科兴科学园C3栋7楼'
                   },
                   {
                   date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  name: '嘀嘀虎3',
                   address: '深圳市南山区科兴科学园C3栋7楼'
                   },
                   {
                   date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  name: '嘀嘀虎4',
                   address: '深圳市南山区科兴科学园C3栋7楼'
                   }
               ],
@@ -1607,32 +1670,32 @@ import date from '../js/date.js'
           },
           table11: {
               data: [{
-                  id: '9527',
-                  name: '去皮嚼嚼鸡',
+                  id: '0755',
+                  name: '竹鼠',
                   category: '小吃零食',
                   desc: '3元1只，10元3只！',
                   address: '深圳市',
                   shop: '在哪里的？',
                   shopId: '2333'
               }, {
-                  id: '9527',
-                  name: '去皮嚼嚼鸡',
+                  id: '0755',
+                  name: '竹鼠',
                   category: '小吃零食',
                   desc: '3元1只，10元3只！',
                   address: '深圳市',
                   shop: '在哪里的？',
                   shopId: '2333'
               }, {
-                  id: '9527',
-                  name: '去皮嚼嚼鸡',
+                  id: '0755',
+                  name: '竹鼠',
                   category: '小吃零食',
                   desc: '3元1只，10元3只！',
                   address: '深圳市',
                   shop: '在哪里的？',
                   shopId: '2333'
               }, {
-                  id: '9527',
-                  name: '去皮嚼嚼鸡',
+                  id: '0755',
+                  name: '竹鼠',
                   category: '小吃零食',
                   desc: '3元1只，10元3只！',
                   address: '深圳市',
@@ -1660,10 +1723,11 @@ import date from '../js/date.js'
               }
           },
           table12: {
+              export: true,
               border: true,
+              data: [],
               align: 'center',
               maxHeight: '450',
-              data: [],
               column: [
                   {
                       label: 'ID',
@@ -1689,27 +1753,16 @@ import date from '../js/date.js'
                       label: '图片路径',
                       prop: 'image'
                   }
-              ]    
+              ],
+              selection: {
+              }
           },
           pagination: {
               show: true,
-              background: true,
-              currentPage: 1,
+              layout:"total, sizes, prev, pager, next, jumper",
               pageSize: 10,
               style: {
-              marginTop: '20px'
-              },
-              currentChange: val => {
-                  this.pagination.currentPage = val
-                  axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
-                      this.table12.data = []
-                      for (let index = val * this.pagination.pageSize - this.pagination.pageSize ; index < this.pagination.pageSize * val; index++) {
-                          this.table12.data.push(res.data.data.items[index])
-                      }
-                      this.pagination.total = res.data.data.items.length
-                  }).catch( err => {
-                      console.log(err)
-                  })
+                marginTop: '20px'
               }
           },
           table13: {
@@ -1942,29 +1995,76 @@ import date from '../js/date.js'
                   }
               ]
           },
+          table14: {
+              border: true,
+              api:'http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list',
+              align: 'center',
+              maxHeight: '450',
+              column: [
+                  {
+                      label: 'ID',
+                      prop: 'id'
+                  },
+                  {
+                      label: '地区',
+                      prop: 'citys',
+                      formatter:(row, column, cellValue, index) => {
+                        return cellValue.substring(0, 6) + `（index：${index} ）\n：${index}`
+                      }
+                  },
+                  {
+                      label: '日期',
+                      prop: 'date'
+                  },
+                  {
+                      label: '文本',
+                      prop: 'txt',
+                      formatter:(row, column, cellValue, index) => {
+                        return index === 0 ? '苟利国家生死以' : index === 1 ? '岂因祸福避趋之' : cellValue
+                      }
+                  },
+                  {
+                      label: '乱码',
+                      prop: 'guid'
+                  },
+                  {
+                      label: '图片路径',
+                      prop: 'image'
+                  }
+              ]    
+          },
+          pagination2: {
+              show: true,
+              background: true,
+              layout:"total, sizes, prev, pager, next, jumper",
+              pageSize: 10,
+              style: {
+                marginTop: '20px'
+              }
+          },
           Events: {
               data: [
-                {
-                    parameter: 'select',
-                    state: '当用户手动勾选数据行的 Checkbox 时触发的事件',
-                    mold: 'selection, row',
-                    choose: '—',
-                    default: '—'
-                },
-                {
-                    parameter: 'select-all',
-                    state: '当用户手动勾选全选 Checkbox 时触发的事件',
-                    mold: 'selection',
-                    choose: '—',
-                    default: '—'
-                },
-                {
-                    parameter: 'selection-change',
-                    state: '当选择项发生变化时会触发该事件',
-                    mold: 'selection',
-                    choose: '—',
-                    default: '—'
-                },
+                // {
+                //     parameter: 'select',
+                //     state: '当用户手动勾选数据行的 Checkbox 时触发的事件',
+                //     mold: 'selection, row',
+                //     choose: '—',
+                //     default: '—'
+                // },
+                // {
+                //     parameter: 'select-all',
+                //     state: '当用户手动勾选全选 Checkbox 时触发的事件',
+                //     mold: 'selection',
+                //     choose: '—',
+                //     default: '—'
+                // },
+                // {
+                //     parameter: 'selection-change',
+                //     state: '当选择项发生变化时会触发该事件',
+                //     mold: 'selection',
+                //     choose: '—',
+                //     default: '—'
+                // },
                 {
                     parameter: 'cell-mouse-enter',
                     state: '当单元格 hover 进入时会触发该事件',
@@ -2559,6 +2659,7 @@ import date from '../js/date.js'
         this.currentRow = val
       },
       toggleSelection(rows) {
+        console.log(rows)
         if (rows) {
           rows.forEach(row => {
             this.$refs.multipleTable.$refs.table.toggleRowSelection(row)
@@ -2568,19 +2669,15 @@ import date from '../js/date.js'
         }
       },
       handleSelectionChange(val) {
-        this.multipleSelection = val;
+        this.multipleSelection = val
       }
     },
-    created() {
-        axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
-            // this.table12.data = res.data.data.items
-            for (let index = 0; index < this.pagination.pageSize; index++) {
-                this.table12.data.push(res.data.data.items[index])
-            }
-            this.pagination.total = res.data.data.items.length
-        }).catch( err => {
-            console.log(err)
-        })
+    mounted() {
+      this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
+        this.table12.data = res.data.data
+      }).catch( err => {
+        console.log(err)
+      })
     }
   }
 </script>

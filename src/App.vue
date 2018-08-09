@@ -40,12 +40,12 @@ export default {
   data() {
     return {
       show: false,
-      header: this.$route.path.replace(/[/]/g,'').length === 0 ? '广联赛讯Vue组件' : '广联赛讯Vue — <span style="color: #409eff">' + this.$route.path.replace(/[/]/g,'') + '</span>',
+      header: this.$route.path.replace(/[/]/g,'').length === 0 ? '广联赛讯Vue组件' : '广联赛讯Vue组件 — <span style="color: #409eff">' + this.$route.path.replace(/[/]/g,'') + '</span>',
       data: [
         {
           title: '开发指南',
           list: [
-            { text: '安装', link: 'Installation' }
+            { text: '安装与引入', link: 'Installation' }
           ]
         },
         {
@@ -135,7 +135,7 @@ export default {
   },
   watch: {
     '$route.path'(val) {
-      this.header = '广联赛讯Vue — <span style="color: #409eff">'+ val.replace(/[/]/g,'') + '</span>'
+      this.header = '广联赛讯Vue组件 — <span style="color: #409eff">'+ val.replace(/[/]/g,'') + '</span>'
     }
   }
 }

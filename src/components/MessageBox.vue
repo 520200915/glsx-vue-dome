@@ -613,6 +613,8 @@
             type: 'info',
             message: 'action: ' + action
           });
+        }).catch(err =>{
+            console.log(err)
         });
       },
       open5() {

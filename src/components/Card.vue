@@ -157,7 +157,6 @@
 </template>
 
 <script type='text/ecmascript-6'>
-import date from '../js/date.js'
   export default {
     name: '',
     data () {
