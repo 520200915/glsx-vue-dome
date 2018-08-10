@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="is-component">
     <gl-header :height='"100px"'>
-      <h1 v-html="header"></h1>
+      <div>
+        <div class="img"><img src="@/img/logo.png"></div>
+        <h1 v-html="header"></h1>
+      </div>
     </gl-header>
     <div class="app-main">
       <el-scrollbar class="page-component__scroll">
@@ -40,7 +43,7 @@ export default {
   data() {
     return {
       show: false,
-      header: this.$route.path.replace(/[/]/g,'').length === 0 ? '广联赛讯Vue组件' : '广联赛讯Vue组件 — <span style="color: #409eff">' + this.$route.path.replace(/[/]/g,'') + '</span>',
+      header: this.$route.path.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 — <span style="color: #409eff">' + this.$route.path.replace(/[/]/g,'') + '</span>',
       data: [
         {
           title: '开发指南',
@@ -135,7 +138,7 @@ export default {
   },
   watch: {
     '$route.path'(val) {
-      this.header = '广联赛讯Vue组件 — <span style="color: #409eff">'+ val.replace(/[/]/g,'') + '</span>'
+      this.header = 'Vue组件 — <span style="color: #409eff">'+ val.replace(/[/]/g,'') + '</span>'
     }
   }
 }
@@ -166,17 +169,35 @@ export default {
     top: 0;
     z-index: 2001;
     background: #fff;
+    text-align: center;
   }
+    #app .el-header>div{
+      width: 1240px;
+      height: 100%;
+      margin: 0 auto;
+    }
+  #app .el-header .img{
+    width: 270px;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding: 20px 25px 25px;
+  }
+   #app .el-header .img img{
+     width: 100%;
+   }
   .layout{
     max-width: 1240px;
     margin: 0 auto;
   }
   h1{
+    display: inline-block;
     text-align: center;
     height: 100px;
     line-height: 100px;
     font-size: 35px;
     letter-spacing: 5px;
+    color: #4D4D4D;
   }
   .aside{
     position: fixed;

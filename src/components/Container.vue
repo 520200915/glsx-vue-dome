@@ -291,7 +291,7 @@
                                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-dropdown-item</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">gl-dropdown-item</span>&gt;</span>
                                 <span class="hljs-tag">&lt;/<span class="hljs-name">gl-dropdown-menu</span>&gt;</span>
                             <span class="hljs-tag">&lt;/<span class="hljs-name">gl-dropdown</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>王小虎<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>嘀嘀虎<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
                             <span class="hljs-tag">&lt;/<span class="hljs-name">gl-header</span>&gt;</span>
                           
                             <span class="hljs-tag">&lt;<span class="hljs-name">gl-main</span>&gt;</span>
@@ -316,7 +316,7 @@
                     <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
                         data() {
                             <span class="hljs-keyword">const</span> item = {
-                                <span class="hljs-attr">date</span>: <span class="hljs-string">'2018-07-24'</span>,
+                                <span class="hljs-attr">date</span>: <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
                                 <span class="hljs-attr">name</span>: <span class="hljs-string">'嘀嘀虎'</span>,
                                 <span class="hljs-attr">address</span>: <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼广联赛讯'</span>
                             }
@@ -352,7 +352,7 @@
     name: 'Container',
     data () {
       const item = {
-        date: '2018-07-24',
+        date: new Date().format("yyyy-MM-dd"),
         name: '嘀嘀虎',
         address: '深圳市南山区科兴科学园C3栋7楼广联赛讯'
       }

@@ -400,7 +400,7 @@ h5 {
 .carousel .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
   }
-  .el-checkbox-group .el-checkbox{
+.form .el-checkbox-group .el-checkbox{
     margin-left: 0;
     float: left;
     width: 160px;

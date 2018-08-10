@@ -28,8 +28,8 @@
         :header-cell-class-name='table.headerCellClassName'
         :header-cell-style='table.headerCellStyle'
         :default-expand-all='table.expandAll'
-        @select="_select"
-        @select-all='_selectAll'
+        @select="select"
+        @select-all='selectAll'
         @selection-change="selectionChange"
         @cell-mouse-enter='mouseHover'
         @cell-mouse-leave='mouseLeave'
@@ -156,8 +156,8 @@
         >
         </el-pagination>
       </div>
-      <div v-if="table.export === true" class="export">
-        <el-button @click="openDialog">导出表格</el-button>
+      <div v-if="table.export === true" class="export" @keyup="keyupDialog($event)">
+        <el-button @click="openDialog" >导出表格</el-button>
       </div>
       <el-dialog
           title="选择导出数据"
@@ -165,13 +165,13 @@
           width="30%"
           center>
           <el-radio-group v-model="radio" style="text-align:center;display:block;">
-            <el-radio-button label='当前页'></el-radio-button>
-            <el-radio-button label='全部'></el-radio-button>
-            <el-radio-button label='选中'></el-radio-button>
+            <el-radio label='当前页'></el-radio>
+            <el-radio label='全部'></el-radio>
+            <el-radio label='选中'></el-radio>
           </el-radio-group>
           <span slot="footer" class="dialog-footer">
-              <el-button @click="centerDialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="exportTable">确 定</el-button>
+              <el-button @click="centerDialogVisible = false">取 消 (Esc)</el-button>
+              <el-button type="primary" @click="exportTable">确 定 (Enter)</el-button>
           </span>
       </el-dialog>
    </div>
@@ -203,7 +203,6 @@ export default {
       arr: [],
       select_items: [],
       radio: '当前页',
-      url: this.table.api,
       centerDialogVisible: false,
       tableData: [],
       pageData: [],
@@ -217,9 +216,9 @@ export default {
       cellClick: this.table.cellClick === undefined ? () => null : this.table.cellClick,
       mouseLeave: this.table.cellMouseLeave === undefined ? () => null : this.table.cellMouseLeave,
       mouseHover: this.table.cellMouseEnter === undefined ? () => null : this.table.cellMouseEnter,
-      select: this.table.select === undefined ?  () => null : this.table.select,
-      selectAll: this.table.selectAll === undefined ? () => null : this.table.selectAll,
-      selectionChange: this.table.selectionChange === undefined ? () => null : this.table.selectionChange,
+      select: this.table.select === undefined ?  this._select : this.table.select,
+      selectAll: this.table.selectAll === undefined ? this._selectAll : this.table.selectAll,
+      selectionChange: this.table.selectionChange === undefined ? this._selectionChange : this.table.selectionChange,
       currentChange: this.table.currentChange === undefined ? () => null : this.table.currentChange,
       headerDragend: this.table.headerDragend === undefined ? () => null : this.table.headerDragend,
       expandChange: this.table.expandChange === undefined ? () => null : this.table.expandChange,
@@ -243,22 +242,30 @@ export default {
       }
       this.centerDialogVisible = true
     },
-    exportTable(data) {
+    keyupDialog(event) {
+      if(event.key === 'Enter' && this.centerDialogVisible === true) this.exportTable()
+    },
+    exportTable() {
       let table = this.pagination.show ? this.radio === '全部' ? this.tableData : this.radio === '当前页' ? this.pageData : this.select_items : this.radio === '选中' ? this.selectionItem :this.table.data
-      this.$prompt('文件名', '请输入', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        }).then(({ value }) => {
-          // 1宽度 ≈ 20像素
-          let width = this.$refs.table.bodyWidth.replace('px','') / this.table.column.length / 8
-          let width_item = []
-          for (let index = 0; index < this.table.column.length; index++) {
-              width_item.push({ wch: Number.parseInt(width) })
-          }
-          this.$outputXlsxFile(this.getData(this.table.column, table), width_item, value)
-          this.centerDialogVisible = false
-        }).catch(err =>{
-          console.log(err)
+      this.$prompt('请输入文件名', {
+        confirmButtonText: '确 定 (Enter)',
+        cancelButtonText: '取 消 (Esc)',
+        inputValidator: _ =>{
+          return _ !== null
+        },
+        inputErrorMessage: '文件名不能为空！',
+        roundButton: true
+      }).then(({ value }) => {
+        this.centerDialogVisible = false
+        // 1宽度 ≈ 20像素
+        let width = this.$refs.table.bodyWidth.replace('px','') / this.table.column.length / 8
+        let width_item = []
+        for (let index = 0; index < this.table.column.length; index++) {
+            width_item.push({ wch: Number.parseInt(width) })
+        }
+        this.$outputXlsxFile(this.getData(this.table.column, table), width_item, value)
+      }).catch(err =>{
+        console.log(err)
       })
     },
     getData(list, data) {
@@ -284,6 +291,9 @@ export default {
     },
     _selectAll(val) {
       this.arr[this.pagination.currentPage-1] = val
+    },
+    _selectionChange(val) {
+      this.selectionItem = val
     },
     _sizeChange(val) {
       this.pageSize = val

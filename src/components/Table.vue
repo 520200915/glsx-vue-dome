@@ -1036,7 +1036,14 @@
                                     }                               
                                 }
                             }
-                        }
+                        },
+                        mounted() {
+                            this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
+                                this.table12.data = res.data.data
+                            }).catch( err => {
+                                console.log(err)
+                            })
+                        }   
                     }
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
             </code></pre>
@@ -1049,7 +1056,7 @@
             <gl-table :table='table14' :pagination='pagination2'></gl-table>
         </template>
         <template slot='description'>
-            <p>使用<code>formatter</code>格式化数据。<code>api</code>返回的数据类型为data.data。</p>
+            <p>使用<code>formatter</code>格式化数据。使用<code>api</code>传入接口。</p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -1085,12 +1092,17 @@
                                             label: '文本',
                                             prop: 'txt'',
                                             formatter:(row, column, cellValue, index) => {
+                                                column.label = '林则徐名言'
                                                 return index === 0 ? '苟利国家生死以' : index === 1 ? '岂因祸福避趋之' : cellValue
                                             }
                                         },
                                         {
                                             label: '乱码'',
-                                            prop: 'guid'
+                                            prop: 'guid',
+                                            formatter: (row, column, cellValue, index) => {
+                                                column.label = '还可以改标题'
+                                                return cellValue
+                                            }
                                         },
                                         {
                                             label: '图片路径',
@@ -2020,12 +2032,17 @@
                       label: '文本',
                       prop: 'txt',
                       formatter:(row, column, cellValue, index) => {
-                        return index === 0 ? '苟利国家生死以' : index === 1 ? '岂因祸福避趋之' : cellValue
+                        column.label = '林则徐名言'
+                        return index === 0 ? 'formatter后：苟利国家生死以' : index === 1 ? 'formatter后：岂因祸福避趋之' : cellValue
                       }
                   },
                   {
                       label: '乱码',
-                      prop: 'guid'
+                      prop: 'guid',
+                      formatter: (row, column, cellValue, index) => {
+                        column.label = '← 还可以改标题'
+                        return cellValue
+                      }
                   },
                   {
                       label: '图片路径',
@@ -2659,7 +2676,6 @@
         this.currentRow = val
       },
       toggleSelection(rows) {
-        console.log(rows)
         if (rows) {
           rows.forEach(row => {
             this.$refs.multipleTable.$refs.table.toggleRowSelection(row)
