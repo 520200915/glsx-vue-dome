@@ -1132,7 +1132,7 @@
     <h3>Table-column Attributes</h3>
     <gl-table :table='Column'></gl-table>
     <h3>Table-console</h3>
-    <gl-table :table='Console'></gl-table>
+    <gl-table :table='ConsoleItem'></gl-table>
     <h3>Table-number</h3>
     <gl-table :table='number'></gl-table>
     <h3>Table-selection</h3>
@@ -2301,7 +2301,7 @@
                   }
               ]
           },
-          Console: {
+          ConsoleItem: {
               data: [
                 {
                     parameter: 'label',

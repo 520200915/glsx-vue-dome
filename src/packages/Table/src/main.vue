@@ -98,11 +98,6 @@
                 :header-align='i.headerAlign || table.headerAlign'
                 :formatter='i.formatter'
                 :resizable='i.resizable'>
-              <!-- <template slot-scope="scope">
-                <a :href="'http://'+ scope.row"
-                  target="_blank"
-                >{{scope.row}}</a>
-              </template> -->
             </el-table-column>
             <!-- 操作 -->
             <el-table-column
