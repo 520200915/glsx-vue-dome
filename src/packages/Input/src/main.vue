@@ -18,6 +18,8 @@
       @focus="focus"
       @change="change"
       @clear='clear'
+      @keyup.enter.native="input_"
+      ref='input'
   >
     <slot name='prefix' slot="prefix"></slot>
     <slot name='suffix' slot="suffix"></slot>
@@ -44,9 +46,6 @@
         },
         type: {
           type: String
-        },
-        value: {
-          type: [String, Number]
         },
         maxlength: {
           type: Number
@@ -94,8 +93,6 @@
         model_(val) {
           this.$emit("input", val)
           this.$emit("change", val)
-          this.$emit("blur", val)
-          this.$emit("focus", val)
         },
         value(val) {
           this.model_ = val
@@ -110,9 +107,13 @@
         },
         change(val) {
           this.$emit("change", val)
+          this.$emit("input", val)
         },
-        clear(val) {
-          this.$emit("clear", val)
+        clear() {
+          this.$emit("clear", '')
+        },
+        input_(val) {
+          this.blur()
         }
       }
     }

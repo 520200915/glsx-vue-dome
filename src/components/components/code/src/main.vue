@@ -1,13 +1,13 @@
 <template>
-    <div class="demo-block demo-box demo-layout">
+    <div class="demo-block demo-box demo-layout" ref="box">
         <div class="source">
             <slot name='source'></slot>
         </div>
-        <div class="meta" :style="{height:height}">
+        <div class="meta" :style="{height:height}" >
             <div class="description" ref="description" v-if="state">
               <slot name="description"></slot>
             </div>
-            <div class="highlight">
+            <div class="highlight" ref='insetr'>
                 <slot name='highlight'></slot>
             </div>
         </div>

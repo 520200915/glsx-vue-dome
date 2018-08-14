@@ -1,5 +1,5 @@
 <template>
-   <div class="box">
+   <div class="box input">
         <h2>Input 输入框</h2>
         <p>通过鼠标或键盘输入字符</p>
         <h3>基础用法</h3>
@@ -1196,12 +1196,6 @@
     }
     .demo-input-suffix{
         margin-bottom: 15px;
-    }
-    .el-select .el-input {
-        width: 130px;
-    }
-    .input-with-select .el-input-group__prepend {
-        background-color: #fff;
     }
     .demo-input-size .el-input{
         vertical-align: top;

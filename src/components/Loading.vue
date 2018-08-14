@@ -26,22 +26,22 @@
                             <span class="hljs-attr">table:</span>: {
                                 <span class="hljs-attr">data:</span> [
                                     {
-                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'2018-07-30'</span>,
+                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'new Date().format("yyyy-MM-dd")'</span>,
                                         <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
                                         <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                     },
                                     {
-                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'2018-07-30'</span>,
+                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'new Date().format("yyyy-MM-dd")'</span>,
                                         <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
                                         <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                     },
                                     {
-                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'2018-07-30'</span>,
+                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'new Date().format("yyyy-MM-dd")'</span>,
                                         <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
                                         <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                     },
                                     {
-                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'2018-07-30'</span>,
+                                        <span class="hljs-attr">date:</span> <span class="hljs-string">'new Date().format("yyyy-MM-dd")'</span>,
                                         <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
                                         <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>
                                     }
@@ -229,22 +229,22 @@
             table: {
                 data: [
                     {
-                    date: '2018-07-30',
+                    date: new Date().format("yyyy-MM-dd"),
                     name: '嘀嘀虎',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                     },
                     {
-                    date: '2018-07-30',
+                    date: new Date().format("yyyy-MM-dd"),
                     name: '嘀嘀虎',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                     },
                     {
-                    date: '2018-07-30',
+                    date: new Date().format("yyyy-MM-dd"),
                     name: '嘀嘀虎',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                     },
                     {
-                    date: '2018-07-30',
+                    date: new Date().format("yyyy-MM-dd"),
                     name: '嘀嘀虎',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                     }

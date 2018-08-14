@@ -86,7 +86,7 @@
             v-model="inputValue"
             ref="saveTagInput"
             size="small"
-            :blur="handleInputConfirm"
+            @blur="handleInputConfirm"
             style="width: 200px;"
             >
             </gl-input>
@@ -110,7 +110,7 @@
                     <span class="hljs-attr">v-model</span>=<span class="hljs-string">"inputValue"</span>
                     <span class="hljs-attr">ref</span>=<span class="hljs-string">"saveTagInput"</span>
                     <span class="hljs-attr">size</span>=<span class="hljs-string">"small"</span>
-                    <span class="hljs-attr">:blur</span>=<span class="hljs-string">"handleInputConfirm"</span>
+                    <span class="hljs-attr">@blur</span>=<span class="hljs-string">"handleInputConfirm"</span>
                     &gt;</span>
                 <span class="hljs-tag">&lt;/<span class="hljs-name">gl-input</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-button</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button-new-tag"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"small"</span> <span class="hljs-attr">@click</span>=<span class="hljs-string">"showInput"</span>&gt;</span>+ New Tag<span class="hljs-tag">&lt;/<span class="hljs-name">gl-button</span>&gt;</span>
@@ -129,7 +129,10 @@
                         },
 
                         showInput() {
-                            <span class="hljs-keyword">this</span>.inputVisible = <span class="hljs-literal">true</span>;
+                            <span class="hljs-keyword">this</span>.inputVisible = <span class="hljs-literal">true</span>
+                            <span class="hljs-keyword">this</span>.$nextTick( _ => {
+                                <span class="hljs-keyword">this</span>.$refs.saveTagInput.$refs.input.focus()
+                            })
                         },
 
                         handleInputConfirm() {
@@ -291,6 +294,9 @@
 
         showInput() {
             this.inputVisible = true;
+            this.$nextTick(_ => {
+                this.$refs.saveTagInput.$refs.input.focus()
+            })
         },
 
         handleInputConfirm() {

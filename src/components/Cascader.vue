@@ -1161,52 +1161,52 @@
             <template slot='source'>
                 <gl-cascader
                 :options="options2"
-                :active-item-change="handleItemChange"
+                @active-item-change="handleItemChange"
                 :props="props"
                 ></gl-cascader>
             </template>
             <template slot='description'>
-                <p>本例的选项数据源在初始化时不包含城市数据。利用<code>active-item-change</code>事件，可以在用户点击某个省份时拉取该省份下的城市数据。此外，本例还展示了<code>props</code>属性的用法。</p>
+                <p>本例的选项数据源在初始化时不包含子级数据。利用<code>active-item-change</code>事件，可以在用户点击某个选项时拉取该选项的子级数据。此外，本例还展示了<code>props</code>属性的用法。</p>
             </template>
             <template slot='highlight'>
                 <pre><code class="hljs language-html">
                     <span class="hljs-tag">&lt;<span class="hljs-name">gl-cascader</span>
                     <span class="hljs-attr">:options</span>=<span class="hljs-string">"options2"</span>
-                    <span class="hljs-attr">:active-item-change</span>=<span class="hljs-string">"handleItemChange"</span>
+                    <span class="hljs-attr">@active-item-change</span>=<span class="hljs-string">"handleItemChange"</span>
                     <span class="hljs-attr">:props</span>=<span class="hljs-string">"props"</span>
                     &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-cascader</span>&gt;</span>
 
                     <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
                     <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
                         data() {
-                        <span class="hljs-keyword">return</span> {
-                            <span class="hljs-attr">options2</span>: [{
-                            <span class="hljs-attr">label</span>: <span class="hljs-string">'江苏'</span>,
-                            <span class="hljs-attr">cities</span>: []
-                            }, {
-                            <span class="hljs-attr">label</span>: <span class="hljs-string">'浙江'</span>,
-                            <span class="hljs-attr">cities</span>: []
-                            }],
-                            <span class="hljs-attr">props</span>: {
-                            <span class="hljs-attr">value</span>: <span class="hljs-string">'label'</span>,
-                            <span class="hljs-attr">children</span>: <span class="hljs-string">'cities'</span>
-                            }
-                        };
+                            <span class="hljs-keyword">return</span> {
+                                <span class="hljs-attr">options2</span>: [{
+                                    <span class="hljs-attr">label</span>: <span class="hljs-string">'苟利国家生死以'</span>,
+                                    <span class="hljs-attr">txt</span>: []
+                                    }, {
+                                    <span class="hljs-attr">label</span>: <span class="hljs-string">'闷声发大财'</span>,
+                                    <span class="hljs-attr">txt</span>: []
+                                }],
+                                <span class="hljs-attr">props</span>: {
+                                    <span class="hljs-attr">value</span>: <span class="hljs-string">'label'</span>,
+                                    <span class="hljs-attr">children</span>: <span class="hljs-string">'txt'</span>
+                                }
+                            };
                         },
 
                         <span class="hljs-attr">methods</span>: {
                         handleItemChange(val) {
                             <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'active item:'</span>, val);
                             setTimeout(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> {
-                            <span class="hljs-keyword">if</span> (val.indexOf(<span class="hljs-string">'江苏'</span>) &gt; <span class="hljs-number">-1</span> &amp;&amp; !<span class="hljs-keyword">this</span>.options2[<span class="hljs-number">0</span>].cities.length) {
-                                <span class="hljs-keyword">this</span>.options2[<span class="hljs-number">0</span>].cities = [{
-                                <span class="hljs-attr">label</span>: <span class="hljs-string">'南京'</span>
-                                }];
-                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val.indexOf(<span class="hljs-string">'浙江'</span>) &gt; <span class="hljs-number">-1</span> &amp;&amp; !<span class="hljs-keyword">this</span>.options2[<span class="hljs-number">1</span>].cities.length) {
-                                <span class="hljs-keyword">this</span>.options2[<span class="hljs-number">1</span>].cities = [{
-                                <span class="hljs-attr">label</span>: <span class="hljs-string">'杭州'</span>
-                                }];
-                            }
+                                <span class="hljs-keyword">if</span> (val.indexOf(<span class="hljs-string">'苟利国家生死以'</span>) &gt; <span class="hljs-number">-1</span> &amp;&amp; !<span class="hljs-keyword">this</span>.options2[<span class="hljs-number">0</span>].txt.length) {
+                                    <span class="hljs-keyword">this</span>.options2[<span class="hljs-number">0</span>].txt = [{
+                                        <span class="hljs-attr">label</span>: <span class="hljs-string">'岂因祸福避趋之'</span>
+                                    }];
+                                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val.indexOf(<span class="hljs-string">'闷声发大财'</span>) &gt; <span class="hljs-number">-1</span> &amp;&amp; !<span class="hljs-keyword">this</span>.options2[<span class="hljs-number">1</span>].txt.length) {
+                                    <span class="hljs-keyword">this</span>.options2[<span class="hljs-number">1</span>].txt = [{
+                                        <span class="hljs-attr">label</span>: <span class="hljs-string">'+1s'</span>
+                                    }];
+                                }
                             }, <span class="hljs-number">300</span>);
                         }
                         }
@@ -1875,15 +1875,15 @@
             }]
         }],
         options2: [{
-          label: '江苏',
-          cities: []
+          label: '苟利国家生死以',
+          txt: []
             }, {
-          label: '浙江',
-          cities: []
+          label: '闷声发大财',
+          txt: []
         }],
         props: {
           value: 'label',
-          children: 'cities'
+          children: 'txt'
         },
         Attributes: {
             data: [
@@ -2129,13 +2129,13 @@
       handleItemChange(val) {
         console.log('active item:', val);
         setTimeout(_ => {
-          if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-            this.options2[0].cities = [{
-              label: '南京'
+          if (val.indexOf('苟利国家生死以') > -1 && !this.options2[0].txt.length) {
+            this.options2[0].txt = [{
+              label: '岂因祸福避趋之'
             }];
-          } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-            this.options2[1].cities = [{
-              label: '杭州'
+          } else if (val.indexOf('闷声发大财') > -1 && !this.options2[1].txt.length) {
+            this.options2[1].txt = [{
+              label: '+1s'
             }];
           }
         }, 300);

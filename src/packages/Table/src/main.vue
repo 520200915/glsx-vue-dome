@@ -173,7 +173,15 @@
 </template>
 
 <script>
+import XLSX from 'xlsx'
 var end
+const outputXlsxFile = (data, wscols, xlsxName) => {
+  const ws = XLSX.utils.aoa_to_sheet(data)
+  ws['!cols'] = wscols
+  const wb = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(wb, ws, xlsxName)
+  XLSX.writeFile(wb, xlsxName + ".xlsx")
+}
 export default {  
   name: 'GlTable',
   props: {
@@ -258,7 +266,7 @@ export default {
         for (let index = 0; index < this.table.column.length; index++) {
             width_item.push({ wch: Number.parseInt(width) })
         }
-        this.$outputXlsxFile(this.getData(this.table.column, table), width_item, value)
+        outputXlsxFile(this.getData(this.table.column, table), width_item, value)
       }).catch(err =>{
         console.log(err)
       })

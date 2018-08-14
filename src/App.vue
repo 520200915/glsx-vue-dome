@@ -3,7 +3,7 @@
     <gl-header :height='"100px"'>
       <div>
         <div class="img"><img src="@/img/logo.png"></div>
-        <h1 v-html="header"></h1>
+        <h1><b v-html="title"></b><span style="color: #409eff">{{header}}</span></h1> 
       </div>
     </gl-header>
     <div class="app-main">
@@ -16,8 +16,8 @@
                   <div class="nav-group" v-for="(i, index) in data" :key="index">
                     <div class="nav-group__title">{{i.title}}</div>
                     <ul class="pure-menu-list">
-                      <li v-for="(k, ind) in i.list" :key="ind" @click='goTop'>
-                        <router-link :to="'/' + k.link">{{k.text}}</router-link>
+                      <li v-for="(k, ind) in i.list" :key="ind" @click='changeLink'>
+                        <router-link :to="'/' + k.link" ref="list">{{k.text}}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       show: false,
-      header: this.$route.path.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 — <span style="color: #409eff">' + this.$route.path.replace(/[/]/g,'') + '</span>',
+      title: this.$route.path.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 - ',
+      header: this.$route.path.replace(/[/]/g,''),
       data: [
         {
           title: '开发指南',
@@ -58,27 +59,6 @@ export default {
             { text: 'Container 布局容器', link: 'Container' },
             { text: 'Icon 图标', link: 'Icon' },
             { text: 'Button 按钮', link: 'Button' }
-          ]
-        },
-        {
-          title: 'Form',
-          list: [
-            { text: 'Radio 单选框', link: 'Radio' },
-            { text: 'Checkbox 多选框', link: 'Checkbox' },
-            { text: 'Input 输入框', link: 'Input' },
-            { text: 'InputNumber 计数器', link: 'InputNumber' },
-            { text: 'Select 选择器', link: 'Select' },
-            { text: 'Cascader 级联选择器', link: 'Cascader' },
-            { text: 'Switch 开关', link: 'Switch' },
-            { text: 'Slider 滑块', link: 'Slider' },
-            { text: 'TimePicker 时间选择器', link: 'TimePicker' },
-            { text: 'DatePicker 日期选择器', link: 'DatePicker' },
-            { text: 'DateTimePicker 日期时间选择器', link: 'dateTimePicker' },
-            { text: 'Upload 上传', link: 'Upload' },
-            { text: 'Rate 评分', link: 'rate' },
-            { text: 'ColorPicker 颜色选择器', link: 'ColorPicker' },
-            { text: 'Transfer 穿梭框', link: 'Transfer' },
-            { text: 'Form 表单', link: 'Form' }
           ]
         },
         {
@@ -122,6 +102,27 @@ export default {
             { text: 'Carousel 走马灯', link: 'Carousel' },
             { text: 'Collapse 折叠面板', link: 'Collapse' }
           ]
+        },
+        {
+          title: 'Form',
+          list: [
+            { text: 'Radio 单选框', link: 'Radio' },
+            { text: 'Checkbox 多选框', link: 'Checkbox' },
+            { text: 'Input 输入框', link: 'Input' },
+            { text: 'InputNumber 计数器', link: 'InputNumber' },
+            { text: 'Select 选择器', link: 'Select' },
+            { text: 'Cascader 级联选择器', link: 'Cascader' },
+            { text: 'Switch 开关', link: 'Switch' },
+            { text: 'Slider 滑块', link: 'Slider' },
+            { text: 'TimePicker 时间选择器', link: 'TimePicker' },
+            { text: 'DatePicker 日期选择器', link: 'DatePicker' },
+            { text: 'DateTimePicker 日期时间选择器', link: 'dateTimePicker' },
+            { text: 'Upload 上传', link: 'Upload' },
+            { text: 'Rate 评分', link: 'rate' },
+            { text: 'ColorPicker 颜色选择器', link: 'ColorPicker' },
+            { text: 'Transfer 穿梭框', link: 'Transfer' },
+            { text: 'Form 表单', link: 'Form' }
+          ]
         }
       ]
     }
@@ -129,16 +130,20 @@ export default {
   methods: {
     goTop() {
       document.body.scrollTop = document.documentElement.scrollTop = 0
+    },
+    changeLink() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   },
-  mounted() {
+  mounted() {   
     window.onscroll = _ => {
       document.documentElement.scrollTop > window.screen.availHeight/2 ? this.show = true : this.show = false
     }
   },
   watch: {
     '$route.path'(val) {
-      this.header = 'Vue组件 — <span style="color: #409eff">'+ val.replace(/[/]/g,'') + '</span>'
+      this.header =  val.replace(/[/]/g,'')
+      this.title = val.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 - '
     }
   }
 }

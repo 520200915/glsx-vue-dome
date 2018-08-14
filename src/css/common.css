@@ -288,7 +288,7 @@ border-top: 1px solid #eff2f6;
     background-color: #e0e6ed;
     margin: 35px -24px;
 }
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 6px;
     background-color: #fff;
     border-radius: 8px;
@@ -296,10 +296,8 @@ border-top: 1px solid #eff2f6;
   body::-webkit-scrollbar-thumb {
     background-color: hsla(220,4%,58%,.3);
     border-radius: 8px;
-  } */
-  /* html::-webkit-scrollbar{
-      display: none;
-  } */
+  }
+
   .gl-menu-demo{
     padding-left: 55px
   }
@@ -406,3 +404,9 @@ h5 {
     width: 160px;
     padding-right: 20px;
   }
+  .input .el-select .el-input {
+    width: 130px;
+}
+.input .input-with-select .el-input-group__prepend {
+    background-color: #fff;
+}
