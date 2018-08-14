@@ -256,7 +256,7 @@
               <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
                 <span class="hljs-attr">methods</span>: {
                   handleCommand(command) {
-                    <span class="hljs-keyword">this</span>.$message(<span class="hljs-string">'click on item '</span> + command);
+                    <span class="hljs-keyword">this</span>.$message(<span class="hljs-string">`click on item ${ command }`</span>)
                   }
                 }
               }
@@ -552,7 +552,7 @@
         alert('button click');
       },
       handleCommand(command) {
-        this.$message('click on item ' + command);
+        this.$message(`click on item ${ command }`);
       }
     }
   }

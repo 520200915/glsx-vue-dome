@@ -533,6 +533,29 @@
                 </code></pre>
             </template>
         </Code>
+        <!-- <h3>自定义模板</h3>
+        <Code>
+            <template slot='source'>
+                <gl-autocomplete
+                    class="my-autocomplete"
+                    popper-class="my-autocomplete"
+                    v-model="state3"
+                    :fetch-suggestions="querySearch"
+                    placeholder="请输入内容"
+                    @select="handleSelect">
+                    <i
+                        class="el-icon-edit el-input__icon"
+                        slot="suffix"
+                        @click="handleIconClick">
+                    </i>
+                </gl-autocomplete>
+            </template>
+            <template slot='description'>
+                <p>使用<code>scoped slot</code>自定义输入建议的模板。该 scope 的参数为<code>item</code>，表示当前输入建议对象。</p>
+            </template>
+            <template slot='highlight'>
+            </template>
+        </Code> -->
         <h3>远程搜索</h3>
         <p>从服务端搜索数据</p>
         <Code>
@@ -1188,7 +1211,8 @@
   }
 </script>
 
-<style scoped>
+<style scoped scss>
+
     .demo-input-suffix .el-input{
         width: 180px;
         display: inline-block;
@@ -1213,4 +1237,5 @@
     .demo-autocomplete .el-col:not(:last-child){
         border-right: 1px solid rgba(224,230,237,.5);
     }
+    
 </style>

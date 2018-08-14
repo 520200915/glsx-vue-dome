@@ -113,7 +113,7 @@
                    default: '—'
                 },
                 {
-                   parameter: '参数replace',
+                   parameter: 'replace',
                    state: '在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录',
                    mold: 'boolean',
                    choose: '—',

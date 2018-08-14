@@ -16,7 +16,7 @@
                   <div class="nav-group" v-for="(i, index) in data" :key="index">
                     <div class="nav-group__title">{{i.title}}</div>
                     <ul class="pure-menu-list">
-                      <li v-for="(k, ind) in i.list" :key="ind" @click='changeLink'>
+                      <li v-for="(k, ind) in i.list" :key="ind" @click='goTop'>
                         <router-link :to="'/' + k.link" ref="list">{{k.text}}</router-link>
                       </li>
                     </ul>
@@ -129,9 +129,6 @@ export default {
   },
   methods: {
     goTop() {
-      document.body.scrollTop = document.documentElement.scrollTop = 0
-    },
-    changeLink() {
       document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   },

@@ -106,7 +106,7 @@
                             }).then(<span class="hljs-function">(<span class="hljs-params">{ value }</span>) =&gt;</span> {
                             <span class="hljs-keyword">this</span>.$message({
                                 <span class="hljs-attr">type</span>: <span class="hljs-string">'success'</span>,
-                                <span class="hljs-attr">message</span>: <span class="hljs-string">'你的邮箱是: '</span> + value
+                                <span class="hljs-attr">message</span>: <span class="hljs-string">'你的邮箱是: ${ value }'</span> 
                             });
                             }).catch(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
                             <span class="hljs-keyword">this</span>.$message({
@@ -574,7 +574,7 @@
         }).then(({ value }) => {
           this.$message({
             type: 'success',
-            message: '你的邮箱是: ' + value
+            message: `你的邮箱是: ${value}`
           });
         }).catch(() => {
           this.$message({

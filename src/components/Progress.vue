@@ -50,7 +50,7 @@
     <h3>环形进度条</h3>
     <Code>
         <template slot='source'>
-            <gl-progress type="circle" :percentage="0"></gl-progress>
+            <gl-progress type="circle" :percentage="num"></gl-progress>
             <gl-progress type="circle" :percentage="25"></gl-progress>
             <gl-progress type="circle" :percentage="80" color="#8e71c7"></gl-progress>
             <gl-progress type="circle" :percentage="100" status="success"></gl-progress>
@@ -61,11 +61,25 @@
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
-                <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"num"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"25"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#8e71c7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">status</span>=<span class="hljs-string">"success"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">gl-progress</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"circle"</span> <span class="hljs-attr">:percentage</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">status</span>=<span class="hljs-string">"exception"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-progress</span>&gt;</span>
+                <span class="javascript">
+                  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+                        data() {
+                            <span class="hljs-keyword">return</span> {
+                                num: 0
+                            }
+                        },
+                        mounted() {
+                            setInterval( _ => {
+                                this.num = this.num === 100 ? 0 : ++this.num
+                            },1000)
+                        }
+                  }
+              </span>
             </code></pre>
         </template>
     </Code>
@@ -79,6 +93,7 @@
     name: '',
     data () {
       return {
+          num: 0,
           table: {
               data: [
                 {
@@ -162,6 +177,11 @@
               ]
           }
       }
+    },
+    mounted() {
+        setInterval( _ => {
+            this.num = this.num === 100 ? 0 : ++this.num
+        },1000)
     }
   }
 </script>
