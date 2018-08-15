@@ -299,7 +299,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Transfer',
     data () {
       const generateData = _ => {
         const data = []

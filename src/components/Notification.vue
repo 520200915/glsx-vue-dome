@@ -366,7 +366,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Notification',
     data () {
       return {
           table: {

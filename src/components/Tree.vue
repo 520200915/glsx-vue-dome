@@ -691,7 +691,7 @@
 <script type='text/ecmascript-6'>
 let id = 1000;
   export default {
-    name: '',
+    name: 'Tree',
     data () {
         const data = [{
             id: 1,

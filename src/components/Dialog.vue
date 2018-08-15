@@ -297,7 +297,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Dialog',
     data () {
       return {
         centerDialogVisible: false,

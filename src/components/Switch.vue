@@ -172,7 +172,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Switch',
     data () {
       return {
         value2: true,

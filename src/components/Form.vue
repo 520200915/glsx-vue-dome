@@ -837,7 +837,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Form',
     data () {
         var checkAge = (rule, value, callback) => {
             if (!value) {

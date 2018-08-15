@@ -332,7 +332,7 @@
 <script type='text/ecmascript-6'>
 const cityOptions = ['深圳', '北京', '广州', '上海']
   export default {
-    name: '',
+    name: 'CheckBox',
     data () {
       return {
             checked: true,

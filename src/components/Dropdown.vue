@@ -374,7 +374,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Dropdown',
     data () {
       return {
         table: {

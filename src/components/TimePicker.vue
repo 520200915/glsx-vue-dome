@@ -235,7 +235,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'TimePicker',
     data () {
       return {
             value1: '',

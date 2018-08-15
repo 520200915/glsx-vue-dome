@@ -137,7 +137,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Carousel',
     data () {
       return {
           table: {

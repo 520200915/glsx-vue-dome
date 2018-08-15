@@ -60,16 +60,17 @@
     <Code>
         <template slot='source'>
             <gl-row>
-                <gl-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
-                    <gl-card :body-style="{ padding: '0px' }">
-                    <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
-                    <div style="padding: 14px;">
-                        <span>汉堡包</span>
-                        <div class="bottom clearfix">
-                        <span class="time">{{ currentDate }}</span>
-                        <gl-button type="text" class="button">操作按钮</gl-button>
+                <gl-col :span="10" v-for="(o, index) in item" :key="o" :offset="index%2 !== 0 ? 2 : 0">
+                    <gl-card :body-style="{ padding: '0px' }" style="margin-bottom:10px;">
+                        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534310288866&di=49fcbb17de1b4f15d1229e7daabee2a1&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20160812%2FImg463991939.jpg" class="image">
+                        <div style="padding: 14px;">
+                            <span>嘀嘀虎</span>
+                            <div class="bottom clearfix">
+                            <span class="time">{{ currentDate }}</span>
+                            <gl-button type="text" class="button" @click="item--">删除</gl-button>
+                            <gl-button type="text" class="button" @click="item++">添加</gl-button>                           
+                            </div>
                         </div>
-                    </div>
                     </gl-card>
                 </gl-col>
             </gl-row>
@@ -80,14 +81,15 @@
         <template slot='highlight'>
             <pre data-v-68fac5f9=""><code data-v-68fac5f9="" class="hljs language-html">
                 <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-row</span>&gt;</span>
-                    <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-col</span> <span data-v-68fac5f9="" class="hljs-attr">:span</span>=<span data-v-68fac5f9="" class="hljs-string">"8"</span> <span data-v-68fac5f9="" class="hljs-attr">v-for</span>=<span data-v-68fac5f9="" class="hljs-string">"(o, index) in 2"</span> <span data-v-68fac5f9="" class="hljs-attr">:key</span>=<span data-v-68fac5f9="" class="hljs-string">"o"</span> <span data-v-68fac5f9="" class="hljs-attr">:offset</span>=<span data-v-68fac5f9="" class="hljs-string">"index &gt; 0 ? 2 : 0"</span>&gt;</span>
-                        <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-card</span> <span data-v-68fac5f9="" class="hljs-attr">:body-style</span>=<span data-v-68fac5f9="" class="hljs-string">"{ padding: '0px' }"</span>&gt;</span>
-                        <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">img</span> <span data-v-68fac5f9="" class="hljs-attr">src</span>=<span data-v-68fac5f9="" class="hljs-string">"http://element-cn.eleme.io/static/hamburger.50e4091.png"</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"image"</span>&gt;</span>
+                    <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-col</span> <span data-v-68fac5f9="" class="hljs-attr">:span</span>=<span data-v-68fac5f9="" class="hljs-string">"10"</span> <span data-v-68fac5f9="" class="hljs-attr">v-for</span>=<span data-v-68fac5f9="" class="hljs-string">"(o, index) in item"</span> <span data-v-68fac5f9="" class="hljs-attr">:key</span>=<span data-v-68fac5f9="" class="hljs-string">"o"</span> <span data-v-68fac5f9="" class="hljs-attr">:offset</span>=<span data-v-68fac5f9="" class="hljs-string">"index%2 !== 0 ? 2 : 0"</span>&gt;</span>
+                        <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-card</span> <span data-v-68fac5f9="" class="hljs-attr">:body-style</span>=<span data-v-68fac5f9="" class="hljs-string">"{ padding: '0px' }" style='margin-bottom:10px;'</span>&gt;</span>
+                        <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">img</span> <span data-v-68fac5f9="" class="hljs-attr">src</span>=<span data-v-68fac5f9="" class="hljs-string">"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534310288866&di=49fcbb17de1b4f15d1229e7daabee2a1&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20160812%2FImg463991939.jpg"</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"image"</span>&gt;</span>
                         <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">div</span> <span data-v-68fac5f9="" class="hljs-attr">style</span>=<span data-v-68fac5f9="" class="hljs-string">"padding: 14px;"</span>&gt;</span>
-                            <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">span</span>&gt;</span>汉堡包<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">span</span>&gt;</span>
+                            <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">span</span>&gt;</span>嘀嘀虎<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">span</span>&gt;</span>
                             <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">div</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"bottom clearfix"</span>&gt;</span>
                             <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">time</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"time"</span>&gt;</span>{<span>{</span> currentDate }}<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">time</span>&gt;</span>
-                            <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-button</span> <span data-v-68fac5f9="" class="hljs-attr">type</span>=<span data-v-68fac5f9="" class="hljs-string">"text"</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"button"</span>&gt;</span>操作按钮<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">gl-button</span>&gt;</span>
+                            <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-button</span> <span data-v-68fac5f9="" class="hljs-attr">type</span>=<span data-v-68fac5f9="" class="hljs-string">"text"</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"button" @click='item--'</span>&gt;</span>删除<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">gl-button</span>&gt;</span>
+                            <span data-v-68fac5f9="" class="hljs-tag">&lt;<span data-v-68fac5f9="" class="hljs-name">gl-button</span> <span data-v-68fac5f9="" class="hljs-attr">type</span>=<span data-v-68fac5f9="" class="hljs-string">"text"</span> <span data-v-68fac5f9="" class="hljs-attr">class</span>=<span data-v-68fac5f9="" class="hljs-string">"button" @click='item++'</span>&gt;</span>添加<span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">gl-button</span>&gt;</span>
                             <span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">div</span>&gt;</span>
                         <span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">div</span>&gt;</span>
                         <span data-v-68fac5f9="" class="hljs-tag">&lt;/<span data-v-68fac5f9="" class="hljs-name">gl-card</span>&gt;</span>
@@ -97,6 +99,7 @@
                 <span data-v-68fac5f9="" class="hljs-keyword">export</span> <span data-v-68fac5f9="" class="hljs-keyword">default</span> {
                     data() {
                         <span data-v-68fac5f9="" class="hljs-keyword">return</span> {
+                            <span data-v-68fac5f9="" class="hljs-attr">item</span>: <span data-v-68fac5f9="" class="hljs-keyword">2</span>,
                             <span data-v-68fac5f9="" class="hljs-attr">currentDate</span>: <span data-v-68fac5f9="" class="hljs-keyword">new</span> <span data-v-68fac5f9="" class="hljs-built_in">Date</span>().format("yyyy-MM-dd HH:mm:ss")
                         };
                     }
@@ -159,9 +162,10 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Card',
     data () {
       return {
+        item: 2,
         currentDate: new Date().format("yyyy-MM-dd HH:mm:ss"),
         table: {
             data: [

@@ -691,7 +691,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Select',
     data () {
       return {
         options: [{

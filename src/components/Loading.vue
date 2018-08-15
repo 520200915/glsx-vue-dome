@@ -220,7 +220,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Loading',
     data () {
         return {
             loading: true,

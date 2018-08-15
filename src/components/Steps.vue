@@ -208,7 +208,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Steps',
     data () {
       return {
         active: 0,

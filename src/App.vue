@@ -11,7 +11,7 @@
         <div class="layout">
           <gl-container>   
             <gl-container class="container">
-              <gl-aside class="aside" :width='"270px"'>
+              <gl-aside class="aside" :width='"270px"' @mouseover.native="insetr" @mouseout.native="out" ref="aside">
                 <el-scrollbar style="height: 100%;">
                   <div class="nav-group" v-for="(i, index) in data" :key="index">
                     <div class="nav-group__title">{{i.title}}</div>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+var time = null
 export default {
   name: 'App',
   data() {
@@ -128,11 +129,21 @@ export default {
     }
   },
   methods: {
+    insetr() {
+      clearTimeout(time)
+      this.$refs.aside.$el.style.opacity = 1
+    },
+    out() {
+      time = setTimeout( _ => {
+        this.$refs.aside.$el.style.opacity = 0.4
+      },5000)
+    },
     goTop() {
       document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   },
-  mounted() {   
+  mounted() {
+    this.out()
     window.onscroll = _ => {
       document.documentElement.scrollTop > window.screen.availHeight/2 ? this.show = true : this.show = false
     }

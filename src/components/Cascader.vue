@@ -1477,7 +1477,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Cascader',
     data () {
       return {
           options: [{

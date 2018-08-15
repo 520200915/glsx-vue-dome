@@ -182,7 +182,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'InputNumber',
     data () {
       return {
             num1: 1,

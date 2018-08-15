@@ -257,7 +257,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Slider',
     data () {
       return {
         value1: 0,

@@ -247,7 +247,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Pagination',
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

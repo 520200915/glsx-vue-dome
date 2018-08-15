@@ -185,7 +185,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Tooltip',
     data () {
       return {
           disabled: false,

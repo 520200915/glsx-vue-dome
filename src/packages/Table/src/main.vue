@@ -249,6 +249,7 @@ export default {
       if(event.key === 'Enter' && this.centerDialogVisible === true) this.exportTable()
     },
     exportTable() {
+      console.log()
       let table = this.pagination.show ? this.radio === '全部' ? this.tableData : this.radio === '当前页' ? this.pageData : this.select_items : this.radio === '选中' ? this.selectionItem :this.table.data
       this.$prompt('请输入文件名', {
         confirmButtonText: '确 定 (Enter)',
@@ -260,10 +261,10 @@ export default {
       }).then(({ value }) => {
         this.centerDialogVisible = false
         // 1宽度 ≈ 20像素
-        let width = this.$refs.table.bodyWidth.replace('px','') / this.table.column.length / 8
+        let width = this.$refs.table.$refs.bodyWrapper.children[0].children[1].children[0].cells
         let width_item = []
         for (let index = 0; index < this.table.column.length; index++) {
-            width_item.push({ wch: Number.parseInt(width) })
+            width_item.push({ wch: width[index].offsetWidth / 8 })
         }
         outputXlsxFile(this.getData(this.table.column, table), width_item, value)
       }).catch(err =>{
@@ -323,11 +324,11 @@ export default {
       },10)
       
     },
-    setData() {
-      this.pagination.total = this.tableData.length
+    setData(data) {
+      this.pagination.total = data.length
       if (this.pagination.total > this.pageSize) {
         for (let i = (this.pagination.currentPage-1) * this.pageSize; i <this.pageSize * this.pagination.currentPage; i++) {
-          this.pageData.push(this.tableData[i])
+          this.pageData.push(data[i])
         }
       } else {
         this.pageData = this.tableData
@@ -337,15 +338,13 @@ export default {
       if (this.table.api) {
         this.$axios.get(this.table.api).then( res => {
           this.tableData = res.data.data
-          this.setData()
         }).catch( err => {
           console.log(err)
         })
-        this.setData()
       } else {
         this.tableData = this.table.data
-        this.setData()
-      }   
+      } 
+      this.setData(this.tableData)  
     }
   },
   mounted() {

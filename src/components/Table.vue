@@ -1146,7 +1146,7 @@
 
 <script type='text/ecmascript-6'>
   export default {
-    name: '',
+    name: 'Table',
     data () {
       return {
           table: {
