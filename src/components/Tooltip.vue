@@ -3,53 +3,53 @@
     <h2>Tooltip 文字提示</h2>
     <p>常用于展示鼠标 hover 时的提示信息。</p>
     <h3>基础用法</h3>
-    <p>在这里我们提供 9 种不同方向的展示方式，可以通过以下完整示例来理解，选择你要的效果。</p>
+    <p>在这里我们提供 12 种不同方向的展示方式，可以通过以下完整示例来理解，选择你要的效果。</p>
     <Code>
         <template slot='source'>
             <div class="tool">
                 <div class="top">
                     <gl-tooltip class="item" effect="dark" content="Top Left 提示文字" placement="top-start">
-                    <gl-button>上左</gl-button>
+                        <gl-button>上左</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">
-                    <gl-button>上边</gl-button>
+                        <gl-button>上边</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Top Right 提示文字" placement="top-end">
-                    <gl-button>上右</gl-button>
+                        <gl-button>上右</gl-button>
                     </gl-tooltip>
                 </div>
                 <div class="left">
                     <gl-tooltip class="item" effect="dark" content="Left Top 提示文字" placement="left-start">
-                    <gl-button>左上</gl-button>
+                        <gl-button>左上</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Left Center 提示文字" placement="left">
-                    <gl-button>左边</gl-button>
+                        <gl-button>左边</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Left Bottom 提示文字" placement="left-end">
-                    <gl-button>左下</gl-button>
+                        <gl-button>左下</gl-button>
                     </gl-tooltip>
                 </div>
 
                 <div class="right">
                     <gl-tooltip class="item" effect="dark" content="Right Top 提示文字" placement="right-start">
-                    <gl-button>右上</gl-button>
+                        <gl-button>右上</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Right Center 提示文字" placement="right">
-                    <gl-button>右边</gl-button>
+                        <gl-button>右边</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Right Bottom 提示文字" placement="right-end">
-                    <gl-button>右下</gl-button>
+                        <gl-button>右下</gl-button>
                     </gl-tooltip>
                 </div>
                 <div class="bottom">
                     <gl-tooltip class="item" effect="dark" content="Bottom Left 提示文字" placement="bottom-start">
-                    <gl-button>下左</gl-button>
+                        <gl-button>下左</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Bottom Center 提示文字" placement="bottom">
-                    <gl-button>下边</gl-button>
+                        <gl-button>下边</gl-button>
                     </gl-tooltip>
                     <gl-tooltip class="item" effect="dark" content="Bottom Right 提示文字" placement="bottom-end">
-                    <gl-button>下右</gl-button>
+                        <gl-button>下右</gl-button>
                     </gl-tooltip>
                 </div>
             </div>
@@ -116,7 +116,7 @@
             <gl-tooltip content="Top center" placement="top">
             <gl-button>Dark</gl-button>
             </gl-tooltip>
-            <gl-tooltip content="Bottom center" placement="bottom" effect="light">
+            <gl-tooltip content="Bottom center" placement="bottom-end" effect="light">
             <gl-button>Light</gl-button>
             </gl-tooltip>
         </template>
@@ -156,9 +156,9 @@
         </template>
     </Code>
     <h3>高级扩展</h3>
-    <p>除了这些基本设置外，还有一些属性可以让使用者更好的定制自己的效果：</p>
+    <!-- <p>除了这些基本设置外，还有一些属性可以让使用者更好的定制自己的效果：</p>
     <p><code>transition</code> 属性可以定制显隐的动画效果，默认为<code>fade-in-linear</code>。如果需要关闭 <code>tooltip</code> 功能，<code>disabled</code> 属性可以满足这个需求，它接受一个<code>Boolean</code>，设置为<code>true</code>即可。</p>
-    <p>事实上，这是基于 <a href="https://github.com/element-component/vue-popper">Vue-popper</a> 的扩展，你可以自定义任意 Vue-popper 中允许定义的字段。当然 Tooltip 组件实际上十分强大，文末的API文档会做一一说明。</p>
+    <p>事实上，这是基于 <a href="https://github.com/element-component/vue-popper">Vue-popper</a> 的扩展，你可以自定义任意 Vue-popper 中允许定义的字段。当然 Tooltip 组件实际上十分强大，文末的API文档会做一一说明。</p> -->
     <Code>
         <template slot='source'>
             <gl-tooltip :disabled="disabled" content="点击关闭 tooltip 功能" placement="bottom" effect="light">
@@ -226,34 +226,34 @@
                    choose: '—',
                    default: 'false'
                 },
-                {
-                   parameter: 'offset',
-                   state: '出现位置的偏移量',
-                   mold: 'Number',
-                   choose: '—',
-                   default: '0'
-                },
-                {
-                   parameter: 'transition',
-                   state: '定义渐变动画',
-                   mold: 'String',
-                   choose: '—',
-                   default: 'el-fade-in-linear'
-                },
+                // {
+                //    parameter: 'offset',
+                //    state: '出现位置的偏移量',
+                //    mold: 'Number',
+                //    choose: '—',
+                //    default: '0'
+                // },
+                // {
+                //    parameter: 'transition',
+                //    state: '定义渐变动画',
+                //    mold: 'String',
+                //    choose: '—',
+                //    default: 'el-fade-in-linear'
+                // },
                 {
                    parameter: 'visible-arrow',
-                   state: '是否显示 Tooltip 箭头，更多参数可见Vue-popper',
+                   state: '是否显示 Tooltip 箭头',
                    mold: 'Boolean',
                    choose: '—',
                    default: 'true'
                 },
-                {
-                   parameter: 'popper-options',
-                   state: 'Object',
-                   mold: '参考 popper.js 文档',
-                   choose: '—',
-                   default: "{ boundariesElement: 'body', gpuAcceleration: false }"
-                },
+                // {
+                //    parameter: 'popper-options',
+                //    state: 'Object',
+                //    mold: '参考 popper.js 文档',
+                //    choose: '—',
+                //    default: "{ boundariesElement: 'body', gpuAcceleration: false }"
+                // },
                 {
                    parameter: 'open-delay',
                    state: '延迟出现，单位毫秒',
@@ -275,20 +275,20 @@
                    choose: '—',
                    default: '—'
                 },
-                {
-                   parameter: 'enterable',
-                   state: '鼠标是否可进入到 tooltip 中',
-                   mold: 'Boolean',
-                   choose: '—',
-                   default: 'true'
-                },
-                {
-                   parameter: 'hide-after',
-                   state: 'Tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏',
-                   mold: 'Number',
-                   choose: '—',
-                   default: '0'
-                }
+                // {
+                //    parameter: 'enterable',
+                //    state: '鼠标是否可进入到 tooltip 中',
+                //    mold: 'Boolean',
+                //    choose: '—',
+                //    default: 'true'
+                // },
+                // {
+                //    parameter: 'hide-after',
+                //    state: 'Tooltip 出现后自动隐藏延时，单位毫秒，为 0 则不会自动隐藏',
+                //    mold: 'Number',
+                //    choose: '—',
+                //    default: '0'
+                // }
               ],
               column: [
                 {

@@ -67,6 +67,34 @@
             </code></pre>
         </template>
     </Code>
+    <h3>导入表格</h3>
+    <p>导出上面表格，在导入试试</p>
+    <Code>
+        <template slot='source'>
+            <gl-table :table='importTable'></gl-table>
+        </template>
+        <template slot='description'>
+            <p>只能导入简单的表格,暂不支持导入分页</p>
+        </template>
+        <template slot='highlight'>
+            <pre><code class="hljs language-html">
+              <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-name">gl-table</span>&nbsp;<span class="hljs-attr">:table</span>=<span class="hljs-string">"table"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-table</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+                  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+                      data() {
+                          <span class="hljs-keyword">return</span> {
+                              <span class="hljs-attr">table:</span>: {
+                                  export: true               
+                              }
+                          }
+                      }
+                  }
+              </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+          </code></pre>
+        </template>
+    </Code>
     <h3>带斑马纹表格</h3>
     <p>使用带斑马纹的表格，可以更容易区分出不同行的数据。</p>
     <Code>
@@ -1149,6 +1177,9 @@
     name: 'Table',
     data () {
       return {
+          importTable: {
+            export: true
+          },
           table: {
             export: true,
             data: [
@@ -1177,7 +1208,11 @@
               {
               label: '日期',
               prop: 'date',
-              width: '180'
+              width: '180',
+              formatter:(row, column, cellValue, index) => {
+                        column.label = '林则徐名言'
+                        return index === 0 ? 'formatter后：苟利国家生死以' : index === 1 ? 'formatter后：岂因祸福避趋之' : cellValue
+                      }
               },
               {
               label: '名称',
@@ -2008,6 +2043,7 @@
               ]
           },
           table14: {
+              export: true,
               border: true,
               api:'http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list',
               align: 'center',
@@ -2061,27 +2097,27 @@
           },
           Events: {
               data: [
-                // {
-                //     parameter: 'select',
-                //     state: '当用户手动勾选数据行的 Checkbox 时触发的事件',
-                //     mold: 'selection, row',
-                //     choose: '—',
-                //     default: '—'
-                // },
-                // {
-                //     parameter: 'select-all',
-                //     state: '当用户手动勾选全选 Checkbox 时触发的事件',
-                //     mold: 'selection',
-                //     choose: '—',
-                //     default: '—'
-                // },
-                // {
-                //     parameter: 'selection-change',
-                //     state: '当选择项发生变化时会触发该事件',
-                //     mold: 'selection',
-                //     choose: '—',
-                //     default: '—'
-                // },
+                {
+                    parameter: 'select',
+                    state: '当用户手动勾选数据行的 Checkbox 时触发的事件(自定义该事件时，导出表格多选会失效)',
+                    mold: 'selection, row',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'select-all',
+                    state: '当用户手动勾选全选 Checkbox 时触发的事件(自定义该事件时，导出表格多选会失效)',
+                    mold: 'selection',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'selection-change',
+                    state: '当选择项发生变化时会触发该事件，(自定义该事件时，导出表格多选会失效)',
+                    mold: 'selection',
+                    choose: '—',
+                    default: '—'
+                },
                 {
                     parameter: 'cell-mouse-enter',
                     state: '当单元格 hover 进入时会触发该事件',
@@ -2694,6 +2730,7 @@
       }).catch( err => {
         console.log(err)
       })
+      console.log(this.table14.data)
     }
   }
 </script>

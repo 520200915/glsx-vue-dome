@@ -139,13 +139,20 @@ export default {
       },5000)
     },
     goTop() {
-      document.body.scrollTop = document.documentElement.scrollTop = 0
+      let t
+      t = setInterval(()=> {
+        if(document.documentElement.scrollTop === 0) {
+          clearInterval(t)
+        } else{
+          document.documentElement.scrollTop -= 500
+        }
+      },20)
     }
   },
   mounted() {
     this.out()
     window.onscroll = _ => {
-      document.documentElement.scrollTop > window.screen.availHeight/2 ? this.show = true : this.show = false
+      this.show = document.documentElement.scrollTop > window.screen.availHeight/2 ? true : false
     }
   },
   watch: {
@@ -194,7 +201,7 @@ export default {
     height: 100%;
     float: left;
     box-sizing: border-box;
-    padding: 20px 25px 25px;
+    padding: 20px 25px 25px 0;
   }
    #app .el-header .img img{
      width: 100%;
@@ -219,6 +226,8 @@ export default {
     margin-top: 100px;
     margin-bottom: -17px;
     overflow-x:auto;
+    transition: all 1s;
+    z-index: 1999;
   }
   .nav-group:last-of-type{
     padding-bottom: 50px;

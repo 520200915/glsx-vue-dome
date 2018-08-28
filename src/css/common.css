@@ -329,17 +329,22 @@ h5 {
 }
 .tool{
     width: 400px;
+ 
 }
 .tool .top{
     text-align: center;
 }
 .tool .left {
     float: left;
-    width: 60px;
+    width: 70px;
 }
 .tool .right {
     float: right;
-    width: 60px;
+    width: 70px;
+
+}
+.tool .left button,.tool .right button{
+    margin-bottom: 5px;
 }
 .tool .bottom {
     clear: both;
