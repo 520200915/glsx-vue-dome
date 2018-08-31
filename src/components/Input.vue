@@ -665,6 +665,78 @@
                     </code></pre>
             </template>
         </Code>
+        <h3>固定格式输入</h3>
+        <p></p>
+        <Code>
+            <template slot='source'>
+                <gl-masked v-model='email' email placeholder='请输入电子邮箱'>
+                    <template slot="prepend">
+                        电子邮箱：
+                    </template>
+                </gl-masked>
+                <gl-masked size='medium' style="margin-top:15px" v-model="phone" :mask="[ '(','0','7','5','5', ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/ ]" placeholder-char="_" placeholder="请输入电话号码">
+                    <template slot="append">
+                        深圳市电话号码    
+                    </template>
+                </gl-masked>
+                <p>slot方式</p>
+                <gl-masked clearable v-model="input" size='small' :mask="tel" placeholder='请输入手机号码'>
+                    <i slot="suffix" class="el-input__icon el-icon-mobile-phone"></i>
+                </gl-masked>
+                <p>属性方式</p>
+                <gl-masked v-model="input2" prefix-icon='el-icon-mobile-phone' size='mini' :mask="tel" placeholder='请输入手机号码'></gl-masked>
+            </template>
+            <template slot='description'>
+            </template>
+            <template slot='highlight'>
+                <pre  >
+                    <code class="hljs language-html">
+                        &lt;gl-masked v-model='email' email placeholder='请输入电子邮箱'&gt;
+                            &lt;template slot="prepend"&gt;
+                                电子邮箱：
+                            &lt;/template&gt;
+                        &lt;/gl-masked&gt;
+                        &lt;gl-masked 
+                            size='medium' 
+                            style="margin-top:15px" 
+                            v-model="phone" 
+                            :mask="[ '(','0','7','5','5', ')', '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/ ]" 
+                            placeholder-char="_" placeholder="请输入电话号码"&gt;
+                            &lt;template slot="append"&gt;
+                                深圳市电话号码    
+                            &lt;/template&gt;
+                        &lt;/gl-masked&gt;
+                        &lt;p&gt;slot方式&lt;/p&gt;
+                        &lt;gl-masked 
+                            clearable 
+                            v-model="input" 
+                            size='small' 
+                            :mask="tel" 
+                            placeholder='请输入手机号码'&gt;
+                            &lt;i slot="suffix" class="el-input__icon el-icon-mobile-phone"&gt;&lt;/i&gt;
+                        &lt;/gl-masked&gt;
+                        &lt;p>属性方式&lt;/p&gt;
+                        &lt;gl-masked 
+                            v-model="input2" 
+                            prefix-icon='el-icon-mobile-phone' 
+                            size='mini' 
+                            :mask="tel" 
+                            placeholder='请输入手机号码'&gt;&lt;/gl-masked&gt;
+                        <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+                            <span class="hljs-keyword">export</span> <span   class="hljs-keyword">default</span> {
+                                data() {
+                                    <span   class="hljs-keyword">return</span> {
+                                        <span class="hljs-attr">phone</span>: <span   class="hljs-string">''</span>,
+                                        <span class="hljs-attr">email</span>: <span   class="hljs-string">''</span>,
+                                        <span class="hljs-attr">tel</span>: <span   class="hljs-string">'[ 1, /[34578]/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/]'</span>,
+                                        <span class="hljs-attr">input</span>: <span   class="hljs-string">''</span>
+                                    }
+                                }
+                            }
+                        <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+                </code></pre>
+            </template>
+        </Code>
         <h3>Input Attributes</h3>
         <gl-table :table='Input'></gl-table>
         <h3>Input Slots</h3>
@@ -675,6 +747,8 @@
         <gl-table :table='Autocomplete'></gl-table>
         <h3>Autocomplete Events</h3>
         <gl-table :table='AEvents'></gl-table>
+        <h3>Masked Attributes</h3>
+        <gl-table :table='Masked'></gl-table>
    </div>
 </template>
 
@@ -683,6 +757,9 @@
     name: 'Input',
     data () {
       return {
+            phone: '',
+            email:'',
+            tel: [ 1, /[34578]/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/,/\d/, /\d/, /\d/],
             input: '',
             input1: '',
             input10: '',
@@ -701,6 +778,7 @@
             input7: '',
             input8: '',
             input9: '',
+            input100: '',
             restaurants: [],
             state1: '',
             state2: '',
@@ -1117,6 +1195,74 @@
                      prop: 'mold'
                   }
                 ]
+            },
+            Masked: {
+                data: [
+                  {
+                     parameter: 'mask',
+                     state: 'mask 是一个数组或函数，用于定义如何屏蔽用户输入',
+                     mold: 'Array,Function',
+                     choose: '—',
+                     default: '—'
+                  },
+                  {
+                     parameter: 'email',
+                     state: '电子邮件格式',
+                     mold: 'Boolean',
+                     choose: '—',
+                     default: 'false'
+                  },
+                  {
+                     parameter: 'placeholder',
+                     state: '输入框占位符',
+                     mold: 'String',
+                     choose: '—',
+                     default: '—'
+                  },
+                  {
+                     parameter: 'guide',
+                     state: '是否显示格式提示',
+                     mold: 'Boolean',
+                     choose: '—',
+                     default: 'false'
+                  },
+                  {
+                     parameter: 'placeholderChar',
+                     state: '可输入位置的占位符',
+                     mold: 'String',
+                     choose: '—',
+                     default: '"_"'
+                  },
+                  {
+                     parameter: 'keepCharPositions',
+                     state: '设置为true时，删除字符不会影响字符位置',
+                     mold: 'Boolean',
+                     choose: '—',
+                     default: 'false'
+                  }
+                ],
+                column: [
+                  {
+                     label: '参数',
+                     prop: 'parameter'
+                  },
+                  {
+                     label: '说明',
+                     prop: 'state'
+                  },
+                  {
+                     label: '类型',
+                     prop: 'mold'
+                  },
+                  {
+                     label: '可选值',
+                     prop: 'choose'
+                  },
+                  {
+                     label: '默认值',
+                     prop: 'default'
+                   }
+                ]
             }
         }
     },
@@ -1206,7 +1352,7 @@
       }
     },
     mounted() {
-      this.restaurants = this.loadAll();
+      this.restaurants = this.loadAll()
     }
   }
 </script>

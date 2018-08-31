@@ -1,13 +1,13 @@
 <template>
-    <div class="demo-block demo-box demo-layout" ref="box">
+    <div class="demo-block demo-box demo-layout">
         <div class="source">
             <slot name='source'></slot>
         </div>
         <div class="meta" :style="{height:height}" >
-            <div class="description" ref="description" v-if="state">
+            <div class="description" v-if="$slots.description">
               <slot name="description"></slot>
             </div>
-            <div class="highlight" ref='insetr'>
+            <div class="highlight">
                 <slot name='highlight'></slot>
             </div>
         </div>
@@ -25,8 +25,7 @@ export default {
         return {
             show: '显示代码',
             showIcon: 'el-icon-caret-bottom',
-            height: '0',
-            state: true
+            height: 0
         }
     },
     methods: {
@@ -34,16 +33,13 @@ export default {
             if(this.height === 'auto') {
                 this.show = '显示代码' 
                 this.showIcon = 'el-icon-caret-bottom'
-                this.height = '0'
+                this.height = 0
             }else{
                 this.show = '隐藏代码'
                 this.showIcon = 'el-icon-caret-top'
                 this.height = 'auto'
             }
         }
-    },
-    mounted() {
-        this.$refs.description.innerHTML === '' ? this.state = false : this.state = true
     }
 }
 </script>

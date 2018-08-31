@@ -1208,11 +1208,7 @@
               {
               label: '日期',
               prop: 'date',
-              width: '180',
-              formatter:(row, column, cellValue, index) => {
-                        column.label = '林则徐名言'
-                        return index === 0 ? 'formatter后：苟利国家生死以' : index === 1 ? 'formatter后：岂因祸福避趋之' : cellValue
-                      }
+              width: '180'
               },
               {
               label: '名称',
@@ -2646,34 +2642,34 @@
                     choose: '—',
                     default: '—'
                 },
-                {
-                    parameter: 'clearSort',
-                    state: '用于清空排序条件，数据会恢复成未排序的状态',
-                    mold: '—',
-                    choose: '—',
-                    default: '—'
-                },
-                {
-                    parameter: 'clearFilter',
-                    state: '用于清空过滤条件，数据会恢复成未过滤的状态',
-                    mold: '—',
-                    choose: '—',
-                    default: '—'
-                },
-                {
-                    parameter: 'doLayout',
-                    state: '对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法',
-                    mold: '—',
-                    choose: '—',
-                    default: '—'
-                },
-                {
-                    parameter: 'sort',
-                    state: '手动对 Table 进行排序。参数prop属性指定排序列，order指定排序顺序。',
-                    mold: 'prop: string, order: string',
-                    choose: '—',
-                    default: '—'
-                }
+                // {
+                //     parameter: 'clearSort',
+                //     state: '用于清空排序条件，数据会恢复成未排序的状态',
+                //     mold: '—',
+                //     choose: '—',
+                //     default: '—'
+                // },
+                // {
+                //     parameter: 'clearFilter',
+                //     state: '用于清空过滤条件，数据会恢复成未过滤的状态',
+                //     mold: '—',
+                //     choose: '—',
+                //     default: '—'
+                // },
+                // {
+                //     parameter: 'doLayout',
+                //     state: '对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法',
+                //     mold: '—',
+                //     choose: '—',
+                //     default: '—'
+                // },
+                // {
+                //     parameter: 'sort',
+                //     state: '手动对 Table 进行排序。参数prop属性指定排序列，order指定排序顺序。',
+                //     mold: 'prop: string, order: string',
+                //     choose: '—',
+                //     default: '—'
+                // }
               ],
               column: [
                 {
@@ -2730,7 +2726,6 @@
       }).catch( err => {
         console.log(err)
       })
-      console.log(this.table14.data)
     }
   }
 </script>

@@ -14,14 +14,14 @@
                     <span class="demonstration">自定义初始值</span>
                     <gl-slider v-model="value2"></gl-slider>
                 </div>
-                <div class="block">
+                <!-- <div class="block">
                     <span class="demonstration">隐藏 Tooltip</span>
                     <gl-slider v-model="value3" :show-tooltip="false"></gl-slider>
                 </div>
                 <div class="block">
                     <span class="demonstration">格式化 Tooltip</span>
                     <gl-slider v-model="value4" :format-tooltip="formatTooltip"></gl-slider>
-                </div>
+                </div> -->
                 <div class="block">
                     <span class="demonstration">禁用</span>
                     <gl-slider v-model="value5" disabled></gl-slider>
@@ -328,20 +328,20 @@
                  choose: '—',
                  default: 'false'
               },
-              {
-                 parameter: 'show-tooltip',
-                 state: '是否显示 tooltip',
-                 mold: 'boolean',
-                 choose: '—',
-                 default: 'true'
-              },
-              {
-                 parameter: 'format-tooltip',
-                 state: '格式化 tooltip message',
-                 mold: 'function(value)',
-                 choose: '—',
-                 default: '—'
-              },
+            //   {
+            //      parameter: 'show-tooltip',
+            //      state: '是否显示 tooltip',
+            //      mold: 'boolean',
+            //      choose: '—',
+            //      default: 'true'
+            //   },
+            //   {
+            //      parameter: 'format-tooltip',
+            //      state: '格式化 tooltip message',
+            //      mold: 'function(value)',
+            //      choose: '—',
+            //      default: '—'
+            //   },
               {
                  parameter: 'range',
                  state: '是否为范围选择',

@@ -26,6 +26,7 @@ import DropdownItem from './DropdownItem'
 import Form from './Form'
 import FormItem from './FormItem'
 import Header from './Header'
+import InputMasked from './InputMasked'
 import Input from './Input'
 import InputNumber from './InputNumber'
 import Popover from './Popover'
@@ -89,6 +90,7 @@ export {
   Form,
   FormItem,
   Input,
+  InputMasked,
   InputNumber,
   Popover,
   Progress,

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="is-component">
+  <div id="app" class="is-component"  ref="main">
     <gl-header :height='"100px"'>
       <div>
         <div class="img"><img src="@/img/logo.png"></div>
@@ -17,7 +17,7 @@
                     <div class="nav-group__title">{{i.title}}</div>
                     <ul class="pure-menu-list">
                       <li v-for="(k, ind) in i.list" :key="ind" @click='goTop'>
-                        <router-link :to="'/' + k.link" ref="list">{{k.text}}</router-link>
+                        <router-link :to="'/' + k.link">{{k.text}}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -39,10 +39,12 @@
 
 <script>
 var time = null
+var aside = null
 export default {
   name: 'App',
   data() {
     return {
+      height: null,
       show: false,
       title: this.$route.path.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 - ',
       header: this.$route.path.replace(/[/]/g,''),
@@ -131,11 +133,11 @@ export default {
   methods: {
     insetr() {
       clearTimeout(time)
-      this.$refs.aside.$el.style.opacity = 1
+      aside.style.opacity = 1
     },
     out() {
       time = setTimeout( _ => {
-        this.$refs.aside.$el.style.opacity = 0.4
+        aside.style.opacity = 0.4
       },5000)
     },
     goTop() {
@@ -150,8 +152,10 @@ export default {
     }
   },
   mounted() {
-    this.out()
+    aside = this.$refs.aside.$el
+    aside.style.opacity = 0.4
     window.onscroll = _ => {
+      this.height = this.$refs.main.offsetHeight
       this.show = document.documentElement.scrollTop > window.screen.availHeight/2 ? true : false
     }
   },
@@ -192,7 +196,7 @@ export default {
     text-align: center;
   }
     #app .el-header>div{
-      width: 1240px;
+      width: 1140px;
       height: 100%;
       margin: 0 auto;
     }
@@ -207,7 +211,7 @@ export default {
      width: 100%;
    }
   .layout{
-    max-width: 1240px;
+    max-width: 1140px;
     margin: 0 auto;
   }
   h1{
@@ -234,6 +238,7 @@ export default {
   }
   .main{
     margin-left:270px;
+    overflow:visible;
   }
    
   .nav-group__title{
