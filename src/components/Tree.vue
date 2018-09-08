@@ -679,6 +679,16 @@
             </code></pre>
         </template>
     </Code>
+    <h3>下拉框树形控件</h3>
+    <Code>
+        <template slot='source'>
+            <gl-input-tree :data='tree' v-model="t"></gl-input-tree>
+        </template>
+        <template slot='description'>
+        </template>
+        <template slot='highlight'>
+        </template>
+    </Code>
     <h3>Attributes</h3>
     <gl-table :table='table'></gl-table>
     <h3>props</h3>
@@ -729,6 +739,8 @@ let id = 1000;
             }]
       }]
       return {
+        t: '',
+        tree: [],
         data: [{
             label: '一级 1',
             children: [{
@@ -1358,6 +1370,16 @@ let id = 1000;
         },
         allowDrag(draggingNode) {
             return draggingNode.data.label.indexOf('三级 3-2-2') === -1;
+        }
+    },
+    mounted() {
+        this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
+            this.tree =  res.data.data.tree
+        })
+    },
+    watch: {
+        t(val) {
+            console.log(val)
         }
     }
   }

@@ -23,7 +23,7 @@
                   </div>
                 </el-scrollbar>
               </gl-aside>
-              <gl-main class="main">
+              <gl-main class="main" :style="{overflow : hide ?'visible':'auto'}">
                 <router-view></router-view>
               </gl-main>
             </gl-container>
@@ -46,6 +46,7 @@ export default {
     return {
       height: null,
       show: false,
+      hide: this.$route.path === '/Tooltip' ? true : false,
       title: this.$route.path.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 - ',
       header: this.$route.path.replace(/[/]/g,''),
       data: [
@@ -163,6 +164,9 @@ export default {
     '$route.path'(val) {
       this.header =  val.replace(/[/]/g,'')
       this.title = val.replace(/[/]/g,'').length === 0 ? 'Vue组件' : 'Vue组件 - '
+      if(val === '/Tooltip') {
+        this.hide = true
+      }
     }
   }
 }
@@ -238,7 +242,6 @@ export default {
   }
   .main{
     margin-left:270px;
-    overflow:visible;
   }
    
   .nav-group__title{

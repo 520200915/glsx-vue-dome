@@ -1,6 +1,6 @@
 <template>
   <div class="el-form-item" :class="[{
-      'el-form-item--feedback': elForm && elForm.statusIcon,
+      'el-form-item--feedback': glForm && glForm.statusIcon,
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
@@ -20,7 +20,7 @@
           :class="{
             'el-form-item__error--inline': typeof inlineMessage === 'boolean'
               ? inlineMessage
-              : (elForm && elForm.inlineMessage || false)
+              : (glForm && glForm.inlineMessage || false)
           }"
         >
           {{validateMessage}}
@@ -44,12 +44,11 @@
 
     provide() {
       return {
-        elFormItem: this
+        glFormItem: this
       };
     },
 
-    inject: ['elForm'],
-
+    inject: ['glForm'],
     props: {
       label: String,
       labelWidth: String,
@@ -150,7 +149,7 @@
         return isRequired;
       },
       _formSize() {
-        return this.elForm.size;
+        return this.glForm.size;
       },
       elFormItemSize() {
         return this.size || this._formSize;
@@ -197,7 +196,7 @@
           this.validateMessage = errors ? errors[0].message : '';
 
           callback(this.validateMessage, invalidFields);
-          this.elForm && this.elForm.$emit('validate', this.prop, !errors);
+          this.glForm && this.glForm.$emit('validate', this.prop, !errors);
         });
       },
       clearValidate() {
@@ -250,6 +249,7 @@
         }).map(rule => objectAssign({}, rule));
       },
       onFieldBlur() {
+        console.log(true)
         this.validate('blur');
       },
       onFieldChange() {

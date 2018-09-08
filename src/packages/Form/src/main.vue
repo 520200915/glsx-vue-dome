@@ -16,7 +16,7 @@
 
     provide() {
       return {
-        elForm: this
+        glForm: this
       };
     },
 
