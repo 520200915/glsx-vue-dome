@@ -508,6 +508,7 @@
                                         }
                                     ],
                                     <span class="hljs-attr">console:</span> {
+                                        <span class="hljs-attr">show:</span> <span class="hljs-string">'true'</span>,
                                         <span class="hljs-attr">label:</span> <span class="hljs-string">'操作'</span>,
                                         <span class="hljs-attr">width:</span> <span class="hljs-string">'150'</span>,
                                         <span class="hljs-attr">fixed:</span> <span class="hljs-string">'right'</span>,
@@ -653,6 +654,7 @@
                                         }
                                     ],
                                     <span class="hljs-attr">console:</span> {
+                                        <span class="hljs-attr">show:</span> <span class="hljs-string">'true'</span>,
                                         <span class="hljs-attr">label:</span> <span class="hljs-string">'操作'</span>,
                                         <span class="hljs-attr">width:</span> <span class="hljs-string">'150'</span>,
                                         <span class="hljs-attr">fixed:</span> <span class="hljs-string">'right'</span>,
@@ -1470,6 +1472,7 @@
                   }
               ],
               console: {
+                  show: true,
                   label: '操作',
                   width: '150',
                   fixed: 'right',
@@ -1562,6 +1565,7 @@
                   }
               ],
               console: {
+                  show: true,
                   label: '操作',
                   width: '150',
                   fixed: 'right',
@@ -1802,6 +1806,7 @@
               },       
               number: {},
               console: {
+                show: true,
                 label: '操作',
                 width: '150',
                 fixed: 'right',
