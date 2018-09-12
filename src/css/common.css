@@ -82,7 +82,7 @@ pre{
 .demo-block .demo-block-control i{
     font-size: 16px;
     line-height: 44px;
-    transition: .1s;
+    transition:all .1s;
 }
 .demo-block:hover .demo-block-control i{
     -ms-transform: translateX(-40px);
@@ -93,7 +93,7 @@ pre{
     opacity: 0;
     font-size: 14px;
     line-height: 44px;
-    transition: .3s;
+    transition:all .3s;
 }
 .demo-block:hover .demo-block-control>span{
     opacity: 1;

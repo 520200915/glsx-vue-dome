@@ -200,7 +200,7 @@ export default {
     text-align: center;
   }
     #app .el-header>div{
-      width: 1140px;
+      width: 1240px;
       height: 100%;
       margin: 0 auto;
     }
@@ -215,7 +215,7 @@ export default {
      width: 100%;
    }
   .layout{
-    max-width: 1140px;
+    max-width: 1240px;
     margin: 0 auto;
   }
   h1{

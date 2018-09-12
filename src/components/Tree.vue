@@ -682,11 +682,33 @@
     <h3>下拉框树形控件</h3>
     <Code>
         <template slot='source'>
-            <gl-input-tree :data='tree' v-model="t"></gl-input-tree>
+            <gl-input-tree :data='tree' v-model="test" :props='tree_props'></gl-input-tree>
         </template>
         <template slot='description'>
         </template>
         <template slot='highlight'>
+            <pre data-v-59d9c37c="">
+                <code data-v-59d9c37c="" class="hljs language-html">
+                    <span data-v-59d9c37c="" class="hljs-tag">&lt;<span data-v-59d9c37c="" class="hljs-name">gl-input-tree</span> :data='data' :props='props'<span data-v-59d9c37c="" class="hljs-attr">v-model</span>=<span data-v-59d9c37c="" class="hljs-string">"test"</span>&gt;</span><span data-v-59d9c37c="" class="hljs-tag">&lt;/<span data-v-59d9c37c="" class="hljs-name">gl-input-tree</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+                        <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+                            data() {
+                                <span class="hljs-keyword">return</span> {
+                                    <span class="hljs-attr">data</span>: [],
+                                    <span class="hljs-attr">test</span>: '',
+                                    <span class="hljs-attr">props</span>: {
+                                        label: 'title'
+                                    }
+                                }
+                            },
+                            mounted() {
+                                this.$axios.post('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/user/getInfo').then(res => {
+                                    this.data = res.data.data.resources
+                                })
+                            }               
+                        }
+                    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+            </code></pre>
         </template>
     </Code>
     <h3>Attributes</h3>
@@ -739,8 +761,11 @@ let id = 1000;
             }]
       }]
       return {
-        t: '',
+        test: '',
         tree: [],
+        tree_props: {
+            label: 'title'
+        },
         data: [{
             label: '一级 1',
             children: [{
@@ -1081,7 +1106,7 @@ let id = 1000;
               {
                  label: '可选值',
                  prop: 'choose',
-                 width: '50'
+                 width: '80'
               },
               {
                  label: '默认值',
@@ -1373,12 +1398,15 @@ let id = 1000;
         }
     },
     mounted() {
-        this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
-            this.tree =  res.data.data.tree
+        this.$axios.post('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/user/getInfo').then(res => {
+            this.tree = res.data.data.resources
         })
+        // this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
+        //     this.tree = res.data.data.tree
+        // })
     },
     watch: {
-        t(val) {
+        test(val) {
             console.log(val)
         }
     }

@@ -1774,7 +1774,8 @@
               column: [
                   {
                       label: 'ID',
-                      prop: 'id'
+                      prop: 'id',
+                       fixed: 'left'
                   },
                   {
                       label: '地区',
@@ -1798,6 +1799,28 @@
                   }
               ],
               selection: {
+              },       
+              number: {},
+              console: {
+                label: '操作',
+                width: '150',
+                fixed: 'right',
+                button: [
+                    {
+                        type: 'primary',
+                        icon: 'el-icon-delete',
+                        callback: (index, rows) => {
+                            rows.splice(index, 1)
+                        }
+                    },
+                    {
+                        label: '编辑',
+                        type: 'text',
+                        callback: (index, rows) => {
+                            this.$alert(rows[index])
+                        }
+                    }
+                ]
               }
           },
           pagination: {
@@ -2080,7 +2103,7 @@
                       label: '图片路径',
                       prop: 'image'
                   }
-              ]    
+              ]
           },
           pagination2: {
               show: true,
