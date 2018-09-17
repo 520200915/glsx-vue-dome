@@ -1404,11 +1404,6 @@ let id = 1000;
         // this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
         //     this.tree = res.data.data.tree
         // })
-    },
-    watch: {
-        test(val) {
-            console.log(val)
-        }
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class='inputTree' @mouseover="inThis = true" @mouseout="inThis = false" @click="openTree">
+  <div class='inputTree' @mouseover="inThis = true" @mouseout="inThis = false" @click="openTree" ref='inputTree'>
     <el-input
       v-model="model_"
       placeholder="请选择"
@@ -64,9 +64,10 @@
     },
     methods: {
       searchLabel(data) {
-        let rex = new RegExp(`${this.model_}`,'g')
-        data.forEach(el => {
-          if(el[this.props.label].search(rex) !== -1) {
+        // let rex = new RegExp(`${this.model_}`,'g')
+        data.forEach(el => {  
+          // if(el[this.props.label].search(rex) !== -1) {
+          if(el[this.props.label].indexOf(this.model_) !== -1) {
             this.data_.push(el)
           }
           if(el[this.props.children]) {
@@ -75,6 +76,7 @@
         })
       },
       openTree(val) {
+        console.log(this.$refs)
         if(this.data_.length === 0) this.data_ = this.data
         this.tree = true
         this.top = `${this.$refs.input.$el.offsetHeight + 25}px`
