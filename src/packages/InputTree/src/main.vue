@@ -5,12 +5,13 @@
       placeholder="请选择"
       :suffix-icon="icon"
       @blur="closeTree"
+      clearable
       class="input"
       ref="input"
     ></el-input>
     <div class="treebox" v-if="tree" :style="{top:top}">
       <div class="arrow"></div>
-      <div class="tree" >
+      <div class="tree" :style="treeStyle">
         <el-tree 
         :data='data_'
         :props='props'
@@ -47,6 +48,14 @@
             children: 'children'
           }
         }
+      },
+      treeStyle: {
+        type: Object,
+        default: () => {
+          return {
+            maxHeight: '300px'
+          }
+        }
       }
     },
     mounted() {
@@ -64,9 +73,7 @@
     },
     methods: {
       searchLabel(data) {
-        // let rex = new RegExp(`${this.model_}`,'g')
         data.forEach(el => {  
-          // if(el[this.props.label].search(rex) !== -1) {
           if(el[this.props.label].indexOf(this.model_) !== -1) {
             this.data_.push(el)
           }
@@ -76,12 +83,11 @@
         })
       },
       openTree(val) {
-        console.log(this.$refs)
         if(this.data_.length === 0) this.data_ = this.data
         this.tree = true
         this.top = `${this.$refs.input.$el.offsetHeight + 25}px`
       },
-      click(data,node,vue) {
+      click(data, node, vue) {
         this.$refs.input.$el.children[0].focus()
         if(data[this.props.children]) {
           return
@@ -92,10 +98,9 @@
       closeTree() {
         if(!this.inThis) {
           if(this.model_ !== ''){
-            let rex = new RegExp(`${this.model_}`,'g')
             this.data_.forEach(el => {
               if(this.model_ !== el[this.props.label]) {
-                if(rex.test(el[this.props.label])) {
+                if(el[this.props.label].indexOf(this.model_)){
                   this.model_ = el[this.props.label]
                   this.$emit('input', this.model_)
                 }
@@ -130,7 +135,6 @@
     box-sizing: border-box;
   }
   .tree{
-     max-height: 300px;
     overflow-y: scroll;
   }
   .tree::-webkit-scrollbar {

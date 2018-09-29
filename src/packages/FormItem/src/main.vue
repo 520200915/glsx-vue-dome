@@ -45,7 +45,7 @@
     provide() {
       return {
         glFormItem: this
-      };
+      }
     },
 
     inject: ['glForm'],

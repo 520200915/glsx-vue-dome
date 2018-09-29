@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.4",
-    "glsx-vue-components": "^1.0.13",
+    "glsx-vue-components": "^1.0.14",
     "text-mask-addons": "^3.8.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

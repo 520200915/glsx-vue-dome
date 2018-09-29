@@ -682,14 +682,15 @@
     <h3>下拉框树形控件</h3>
     <Code>
         <template slot='source'>
-            <gl-input-tree :data='tree' v-model="test" :props='tree_props'></gl-input-tree>
+            <gl-input-tree :data='tree' v-model="test" :treeStyle='{ maxHeight: "100px" }' :props='tree_props' />
         </template>
         <template slot='description'>
+            <p>树组件默认高度为 <code>300px</code>,可传入 <code>treeStyle</code> 控制高度及其他样式。</p>
         </template>
         <template slot='highlight'>
             <pre data-v-59d9c37c="">
                 <code data-v-59d9c37c="" class="hljs language-html">
-                    <span data-v-59d9c37c="" class="hljs-tag">&lt;<span data-v-59d9c37c="" class="hljs-name">gl-input-tree</span> :data='data' :props='props'<span data-v-59d9c37c="" class="hljs-attr">v-model</span>=<span data-v-59d9c37c="" class="hljs-string">"test"</span>&gt;</span><span data-v-59d9c37c="" class="hljs-tag">&lt;/<span data-v-59d9c37c="" class="hljs-name">gl-input-tree</span>&gt;</span>
+                    <span data-v-59d9c37c="" class="hljs-tag">&lt;<span data-v-59d9c37c="" class="hljs-name">gl-input-tree</span> :data='data' :props='props' :treeStyle='{ maxHeight: "100px" }' <span data-v-59d9c37c="" class="hljs-attr">v-model</span>=<span data-v-59d9c37c="" class="hljs-string">"test"</span> /&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
                         <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
                             data() {
@@ -764,7 +765,7 @@ let id = 1000;
         test: '',
         tree: [],
         tree_props: {
-            label: 'title'
+            label: 'label'
         },
         data: [{
             label: '一级 1',
@@ -1398,12 +1399,12 @@ let id = 1000;
         }
     },
     mounted() {
-        this.$axios.post('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/user/getInfo').then(res => {
-            this.tree = res.data.data.resources
-        })
-        // this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
-        //     this.tree = res.data.data.tree
+        // this.$axios.post('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/user/getInfo').then(res => {
+        //     this.tree = res.data.data.resources
         // })
+        this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/test/tree').then(res => {
+            this.tree = res.data.data.tree
+        })
     }
   }
 </script>

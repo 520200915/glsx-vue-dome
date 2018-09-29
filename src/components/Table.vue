@@ -1475,7 +1475,7 @@
                   show: true,
                   label: '操作',
                   width: '150',
-                  fixed: 'right',
+                  fixed: 'right',     
                   button: [
                       {
                           type: 'primary',
@@ -1489,9 +1489,13 @@
                           type: 'text',
                           callback: (index, rows) => {
                               this.$alert(rows[index])
+                          },
+                          formatter: ( row, column, index) => {
+                              return '123'
                           }
                       }
                   ]
+                  
               }
           }, 
           table7: {
@@ -2410,6 +2414,13 @@
                     state: '控制台的按钮',
                     mold: 'object',
                     choose: '参数{ type, size, icon, callback(index,data) }',
+                    default: '—'
+                },
+                {
+                    parameter: 'formatter',
+                    state: '格式化字符',
+                    mold: 'function',
+                    choose: '参数{ row, column, index }',
                     default: '—'
                 }
               ],
