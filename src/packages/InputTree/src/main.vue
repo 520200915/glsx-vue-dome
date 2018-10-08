@@ -2,12 +2,13 @@
   <div class='inputTree' @mouseover="inThis = true" @mouseout="inThis = false" @click="openTree" ref='inputTree'>
     <el-input
       v-model="model_"
-      placeholder="请选择"
+      :placeholder="placeholder"
       :suffix-icon="icon"
       @blur="closeTree"
       clearable
       class="input"
       ref="input"
+      :size='inputSize'
     ></el-input>
     <div class="treebox" v-if="tree" :style="{top:top}">
       <div class="arrow"></div>
@@ -27,7 +28,15 @@
 <script type='text/ecmascript-6'>
   export default {
     name: 'GlInputTree',
-    data () {
+    inject: {
+      glForm: {
+        default: ''
+      },
+      glFormItem: {
+        default: ''
+      }
+    },
+    data() {
       return {
         model_: this.value,
         tree: false,
@@ -39,7 +48,12 @@
     },
     props: {
       data: Array,
-      value: null,
+      value: String,
+      size: String,
+      placeholder: {
+        type: String,
+        default: '请选择'
+      },
       props: {
         type: Object,
         default: () => {
@@ -58,62 +72,71 @@
         }
       }
     },
-    mounted() {
-      if(this.props['children'] === undefined) this.props['children'] = 'children'
+    computed: {
+      inputSize() {
+        return this.size || this.glForm.size || this.glFormItem.size
+      }
     },
-    watch:{
+    mounted() {
+      if (this.props['children'] === undefined) this.props['children'] = 'children'
+    },
+    watch: {
       tree(val) {
         this.icon = val ? 'el-icon-caret-top' : 'el-icon-caret-bottom'
       },
+      value(val) {
+        this.model_ = val
+      },
       model_(val) {
-        let data = this.data
+        const data = this.data
         this.data_ = val === '' ? this.data : []
-        if(val !== '') this.searchLabel(data)
+        if (val !== '') this.searchLabel(data)
       }
     },
     methods: {
       searchLabel(data) {
-        data.forEach(el => {  
-          if(el[this.props.label].indexOf(this.model_) !== -1) {
+        data.forEach(el => {
+          if (el[this.props.label].indexOf(this.model_) !== -1) {
             this.data_.push(el)
           }
-          if(el[this.props.children]) {
+          if (el[this.props.children]) {
             this.searchLabel(el[this.props.children])
           }
         })
       },
       openTree(val) {
-        if(this.data_.length === 0) this.data_ = this.data
+        if (this.data_.length === 0) this.data_ = this.data
         this.tree = true
-        this.top = `${this.$refs.input.$el.offsetHeight + 25}px`
+        this.top = `${this.$refs.input.$el.offsetHeight + 10}px`
       },
       click(data, node, vue) {
         this.$refs.input.$el.children[0].focus()
-        if(data[this.props.children]) {
+        if (data[this.props.children]) {
           return
-        } else{
+        } else {
           this.choose(data)
         }
       },
       closeTree() {
-        if(!this.inThis) {
-          if(this.model_ !== ''){
+        if (!this.inThis) {
+          if (this.model_ !== '' && this.data_.length > 0) {
             this.data_.forEach(el => {
-              if(this.model_ !== el[this.props.label]) {
-                if(el[this.props.label].indexOf(this.model_)){
-                  this.model_ = el[this.props.label]
+              if (this.model_ !== el[this.props.label]) {
+                if (el[this.props.label].indexOf(this.model_)) {
+                  this.model_ = this.data_[0][this.props.label]
                   this.$emit('input', this.model_)
                 }
               }
             })
           }
+          if (this.data_.length === 0) this.model_ = ''
           this.tree = false
-        } 
+        }
       },
       choose(data) {
         this.model_ = data[this.props.label]
-        this.tree = false   
-        this.$emit("input", this.model_)
+        this.tree = false
+        this.$emit('input', this.model_)
       }
     }
   }
@@ -149,22 +172,22 @@
   .arrow{
     position: absolute;
     left: 50%;
-    top: -42px;
-    border-top: 21px solid transparent;
-    border-right: 21px solid transparent;
-    border-left: 21px solid transparent;
-    border-bottom: 21px solid #e5e5e5;
+    top: -13px;
+    border-top: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid #e5e5e5;
     transform: translateX(-50%);
   }
   .arrow::after{
     content: '';
     position: absolute;
     left: 50%;
-    top: -18px;
-    border-top: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-left: 20px solid transparent;
-    border-bottom: 20px solid #fff;
+    top: -3px;
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 5px solid #fff;
     transform: translateX(-50%);
   }
 </style>

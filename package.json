@@ -15,6 +15,7 @@
     "glsx-vue-components": "^1.0.14",
     "text-mask-addons": "^3.8.0",
     "vue": "^2.5.2",
+    "vue-ip-input": "^2.0.2",
     "vue-router": "^3.0.1",
     "vue-text-mask": "^6.1.2",
     "xlsx": "^0.13.3"

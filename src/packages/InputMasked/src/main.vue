@@ -1,141 +1,277 @@
 <template>
-  <div class="masked-box" ref="maskedBox" :class="inputSize">
-     <!-- 前置内容 -->
-    <span class="prepend" v-if="$slots.prepend"><slot name='prepend'></slot></span>
-    <masked-input
-      class="masked"
-      v-model="model_" 
-      :mask='mask_'
-      :placeholder="placeholder"
-      :placeholderChar='placeholderChar'
-      :keepCharPositions='keepCharPositions'
-      :guide="guide"
-    />
-    <!-- 头部内容 -->
-    <span class="prefix" v-if="$slots.prefix || prefixIcon">
-      <slot name='prefix'></slot>
-      <i class="el-input__icon"
-           v-if="prefixIcon"
-           :class="prefixIcon">
-      </i>
-    </span>
-    <!-- 尾部内容 -->
-    <span class="suffix" v-if="$slots.suffix || suffixIcon || showClear">
-        <template v-if="!showClear">
-          <slot name='suffix'></slot>
-          <i class="el-input__icon"
-            v-if="suffixIcon"
-            :class="suffixIcon">
-          </i>
-        </template>
-        <i v-else
-          class="el-input__icon el-icon-circle-close el-input__clear clear"
-          @click="clear"
+  <div>
+    <div class="masked-box" ref="maskedBox" :class="inputSize" v-if="!ip" @mouseover='hovering = true' @mouseout="hovering = false">
+      <i ref="clear" v-show="showClear" class="el-input__icon el-icon-circle-close el-input__clear clear"
+         @click="clear"
         ></i>
+      <!-- 前置内容 -->
+      <span class="prepend" v-if="$slots.prepend"><slot name='prepend'></slot></span>
+      <masked-input
+        class="masked"
+        v-model="model_" 
+        :mask='mask_'
+        :placeholder="placeholder"
+        :placeholderChar='placeholderChar'
+        :keepCharPositions='keepCharPositions'
+        :guide="guide"
+        @focus='focused = true'
+        @blur="focused = false"
+      />
+      <!-- 头部内容 -->
+      <span class="prefix" v-if="$slots.prefix || prefixIcon">
+        <slot name='prefix'></slot>
+        <i class="el-input__icon"
+            v-if="prefixIcon"
+            :class="prefixIcon">
+        </i>
       </span>
-    <!-- 后置内容 -->
-    <span class="append" v-if="$slots.append"><slot name='append'></slot></span>
+      <!-- 尾部内容 -->
+      <span class="suffix" v-if="$slots.suffix || suffixIcon">
+          <template v-if="!showClear">
+            <slot name='suffix'></slot>
+            <i class="el-input__icon"
+              v-if="suffixIcon"
+              :class="suffixIcon">
+            </i>
+          </template>
+        </span>
+      <!-- 后置内容 -->
+      <span class="append" ref='append' v-show="$slots.append"><slot name='append'></slot></span>
+    </div>
+    <div class="ip-box" ref="ipBox" v-else :class="inputSize"  @mouseover='hovering = true' @mouseout="hovering = false">
+      <i ref="clear" v-show="showClear" class="el-input__icon el-icon-circle-close el-input__clear clear"
+         @click="clear"
+        ></i>
+      <span class="prepend" v-if="$slots.prepend"><slot name='prepend'></slot></span>
+      <div class="ip-input-container masked" ref='ipItem' >
+        <div class="ip-item"
+           v-for="(item, index) in ip_item" 
+          :key="index"
+        >
+          <input 
+          ref="ip" 
+          v-model="item.value"
+          maxlength="3" 
+          @input="valid(item.value, index, $event)"
+          @focus="ipFocus"
+          @blur="ipBlur"
+          @keydown="keyBack(item.value, index, $event)"
+          />
+        </div>   
+      </div> 
+
+      <span class="prefix" v-if="$slots.prefix || prefixIcon">
+        <slot name='prefix'></slot>
+        <i class="el-input__icon"
+            v-if="prefixIcon"
+            :class="prefixIcon">
+        </i>
+      </span>
+      <span class="suffix" v-if="$slots.suffix || suffixIcon || showClear">
+          <template v-if="!showClear">
+            <slot name='suffix'></slot>
+            <i class="el-input__icon"
+              v-if="suffixIcon"
+              :class="suffixIcon">
+            </i>
+          </template>
+        </span>
+      <span class="append" v-show="$slots.append" ref='append'><slot name='append'></slot></span>
+    </div>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
 import emailMask from 'text-mask-addons/dist/emailMask'
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+// import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 import MaskedInput from 'vue-text-mask'
-  export default {
-    name: 'GlMasked',
-    components: {
-      MaskedInput
+const reg = new RegExp(/^[0-9]*$/)
+export default {
+  name: 'GlMasked',
+  components: {
+    MaskedInput
+  },
+  inject: {
+    glForm: {
+      default: ''
     },
-    inject: {
-      glForm: {
-        default: ''
-      },
-      glFormItem: {
-        default: ''
+    glFormItem: {
+      default: ''
+    }
+  },
+  data() {
+    return {
+      mask_: this.email ? emailMask : this.mask,
+      model_: this.value,
+      ip_item: [
+        { value: '' },
+        { value: '' },
+        { value: '' },
+        { value: '' }
+      ],
+      focused: false,
+      hovering: false
+    }
+  },
+  props: {
+    ip: Boolean,
+    keepCharPositions: Boolean,
+    guide: Boolean,
+    email: Boolean,
+    value: null,
+    clearable: Boolean,
+    mask: null,
+    placeholder: String,
+    placeholderChar: {
+      type: String,
+      default: '_'
+    },
+    size: String,
+    suffixIcon: String,
+    prefixIcon: String
+  },
+  computed: {
+    showClear() {
+      var ip = true
+      if (this.ip) {
+        ip = false
+        this.ip_item.forEach(el => {
+          if (el.value !== null && el.value !== '') ip = true
+        })
       }
+      return this.clearable && this.model_ !== '' && ip && (this.focused || this.hovering)
     },
-    data () {
-      return {
-        mask_: this.email ? emailMask : this.mask,
-        model_: this.value
-      }
+    inputSize() {
+      return this.size || this.glForm.size || this.glFormItem.size
+    }
+  },
+  watch: {
+    model_(val) {
+      this.$emit('input', val)
     },
-    props: {
-      keepCharPositions: {
-        type: Boolean,
-        default: false
-      },
-      guide: {
-        type: Boolean,
-        default: false
-      },
-      email: {
-        type: Boolean
-      },
-      value: {
-        type: null
-      },
-      clearable: {
-        type: Boolean,
-        default: false
-      },
-      mask: {
-        type: null
-      },
-      placeholder: String,
-      placeholderChar: {
-        type: String,
-        default: '_'
-      },
-      size: String,
-      suffixIcon: String,
-      prefixIcon: String
-    },
-    watch: {
-      model_(val) {
-        this.$emit("input", val)
-      },
-      value(val) {
+    value(val) {
+      if (this.ip) {
+        const _ip_ = this.value.split('.')
+        for (let index = 0; index < 4; index++) {
+          this.$set(this.ip_item[index], 'value', _ip_[index])
+        }
+      } else {
         this.model_ = val
       }
     },
-    methods: {
-      clear() {
+    showClear(val) {
+      if (this.$slots.append && val) this.$refs.clear.style.right = `${this.$refs.append.offsetWidth + 5}px`
+    }
+  },
+  methods: {
+    valid(val, index, $event) {
+      if (!reg.test(val)) this.ip_item[index].value = ''
+      if (val > 255) this.ip_item[index].value = 255
+      if (val.length === 3) {
+        if (index !== 3) {
+          this.$refs.ip[index + 1].focus()
+        }
+      }
+      this.check($event)
+      this.changeValue()
+    },
+    check(obj) {
+      if (obj.target.value === '') {
+        this.$refs.ipItem.classList.add('err')
+      } else {
+        this.$refs.ipItem.classList.add('active')
+        this.$refs.ipItem.classList.remove('err')
+      }
+    },
+    keyBack(val, index, $event) {
+      if ($event.keyCode === 8) {
+        if (val.length === 0) {
+          if (index !== 0) {
+            this.$refs.ip[index - 1].focus()
+          }
+        }
+      }
+      if ($event.keyCode === 13) this.changeValue()
+    },
+    changeValue() {
+      let str = ''
+      for (let index = 0; index < this.ip_item.length; index++) {
+        index === 0 ? str += this.ip_item[index].value : str += `.${this.ip_item[index].value}`
+      }
+      this.$emit('input', str)
+    },
+    clear() {
+      if (!this.ip) {
         this.model_ = ''
+      } else {
+        for (let index = 0; index < 4; index++) {
+          this.ip_item[index].value = ''
+        }
       }
+      this.$emit('input', '')
+      this.$emit('change', '')
     },
-    computed: {
-      showClear() {
-        return this.clearable && this.model_ !== ''
-      },
-      inputSize() {
-        return this.size || this.glForm.size || this.glFormItem.size
+    ipBlur(val) {
+      this.focused = false
+      this.changeValue()
+      this.$refs.ipItem.classList.remove('err')
+      this.$refs.ipItem.classList.remove('active')
+    },
+    ipFocus(val) {
+      this.focused = true
+      this.check(val)
+    }
+  },
+  mounted() {
+    if (this.ip) {
+      const _ip_ = this.value.split('.')
+      for (let index = 0; index < 4; index++) {
+        this.$set(this.ip_item[index], 'value', _ip_[index])
       }
-    },
-    mounted() {
-      if (this.$slots.prepend) {
+    }
+    if (this.$slots.prepend) {
+      if (!this.ip) {
         this.$refs.maskedBox.classList.add('group')
         this.$refs.maskedBox.classList.add('group-prepend')
+      } else {
+        this.$refs.ipBox.classList.add('group')
+        this.$refs.ipBox.classList.add('group-prepend')
       }
-      if (this.$slots.append) {
+    }
+    if (this.$slots.append) {
+      this.$refs.clear.style.right = `${this.$refs.append.offsetWidth + 46}px`
+      if (!this.ip) {
         this.$refs.maskedBox.classList.add('group')
         this.$refs.maskedBox.classList.add('group-append')
+      } else {
+        this.$refs.ipBox.classList.add('group')
+        this.$refs.ipBox.classList.add('group-append')
       }
-      if (this.prefixIcon || this.$slots.prefix) {
+    }
+    if (this.prefixIcon || this.$slots.prefix) {
+      if (!this.ip) {
         this.$refs.maskedBox.classList.add('group')
         this.$refs.maskedBox.classList.add('group-prefix')
+      } else {
+        this.$refs.ipBox.classList.add('group')
+        this.$refs.ipBox.classList.add('group-prefix')
       }
-      if (this.suffixIcon || this.$slots.suffix) {
+    }
+    if (this.suffixIcon || this.$slots.suffix) {
+      if (!this.ip) {
         this.$refs.maskedBox.classList.add('group')
         this.$refs.maskedBox.classList.add('group-suffix')
+      } else {
+        this.$refs.ipBox.classList.add('group')
+        this.$refs.ipBox.classList.add('group-suffix')
       }
     }
   }
+}
 </script>
 
 <style scoped>
-  .masked-box{
+  .masked-box,.ip-box{
     position: relative;
     font-size: 14px;
   }
@@ -207,7 +343,7 @@ import MaskedInput from 'vue-text-mask'
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .group .prefix,.group .suffix,.clear{
+  .group .prefix,.group .suffix{
     position: absolute;
     top: 0;
     transition: all .3s;
@@ -224,7 +360,7 @@ import MaskedInput from 'vue-text-mask'
   .group-suffix .masked{
     padding-right: 30px;
   }
-  .group-suffix .suffix,.clear{
+  .group-suffix .suffix{
     right: 5px;
   }
   .medium .masked,medium .el-input__icon{
@@ -240,9 +376,58 @@ import MaskedInput from 'vue-text-mask'
   .mini .masked,.mini .el-input__icon{
     height: 28px;
     line-height: 28px;
-    font-size: 12px;
+    font-size: 12px;  
   }
-  .masked-box .clear{
+  .group .ip-input-container{
+    display: flex;
+  }
+  .ip-input-container{
+    /* width: 100%; */
+    vertical-align: middle;
+    font-size: 0;
+    display: flex;
+    box-sizing: border-box;
+  }
+  .active{
+    border-color: #409eff;
+    outline: 0;
+  }
+  .err{
+    border-color: #f56c6c;
+    outline: 0;
+  }
+  .clear{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9;
+    color: #C4C4CC;
     cursor: pointer;
+  }
+  .ip-item{
+    flex: 1;
+    display: inline-block;
+    width: 25%;
+    box-sizing: border-box;
+    
+  }
+  .ip-item::after{
+    width: 10%;
+    display: inline-block;
+    content: '.';
+    font-size: 16px;
+  }
+  .ip-item:last-of-type::after{
+    display: none;
+  }
+  .ip-item input{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 90%;
+    outline: none;
+    border: none;
+    text-align: center;
   }
 </style>
