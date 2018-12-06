@@ -724,6 +724,11 @@
 <script type='text/ecmascript-6'>
 let id = 1000;
   export default {
+      watch: {
+          test(val) {
+              console.log(val)
+          }
+      },
     name: 'Tree',
     data () {
         const data = [{

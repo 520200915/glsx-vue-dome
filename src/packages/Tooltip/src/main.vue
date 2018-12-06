@@ -95,7 +95,6 @@ var time = null
     },
     mounted() {
       this.show = this.value === true ? true : false
-       
     },
     computed: {
       className() {
@@ -108,18 +107,18 @@ var time = null
       },
       show(val) {
         this.$emit('input',val)
+        const childer = this.$refs.trigger
+        const box = this.$refs.box
         if(val) {
-          const childer = this.$refs.trigger
-          const box = this.$refs.box
           switch (this.placement) {
             case 'top':
             case 'top-start':
             case 'top-end':
-                this.style = {
-                  left: 0,
-                  top: `-${childer.offsetHeight + box.offsetHeight / 2}px`
-                }
-              break;
+              this.style = {
+                left: 0,
+                top: `-${childer.offsetHeight + box.offsetHeight / 2}px`
+              }
+              break
             case 'right':
             case 'right-start':
             case 'right-end':
@@ -127,7 +126,7 @@ var time = null
                 right: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
                 top: 0
               }
-              break;
+              break
             case 'bottom':
             case 'bottom-start':
             case 'bottom-end':
@@ -135,7 +134,7 @@ var time = null
                 left: 0,
                 bottom: `-${(childer.offsetHeight + box.offsetHeight / 2)}px`
               }
-              break;
+              break
             case 'left':
             case 'left-start':
             case 'left-end':
@@ -143,7 +142,7 @@ var time = null
                 left: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
                 top: 0
               }
-              break;
+              break
           }
         }
       }

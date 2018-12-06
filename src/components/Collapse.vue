@@ -1,10 +1,10 @@
 <template>
-  <div class='box'>
-    <h2>Collapse 折叠面板</h2>
-    <p>通过折叠面板收纳内容区域</p>
-    <h3>基础用法</h3>
-    <p>可同时展开多个面板，面板之间不影响</p>
-    <Code>
+<div class='box'>
+  <h2>Collapse 折叠面板</h2>
+  <p>通过折叠面板收纳内容区域</p>
+  <h3>基础用法</h3>
+  <p>可同时展开多个面板，面板之间不影响</p>
+  <Code>
         <template slot='source'>
           <gl-collapse v-model="activeNames" @change="handleChange">
             <gl-collapse-item title="一致性 Consistency" name="1">
@@ -64,11 +64,11 @@
               }
             </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
           </code></pre>
-        </template>
-    </Code>
-    <h3>手风琴效果</h3>
-    <p>每次只能展开一个面板</p>
-    <Code>
+  </template>
+  </Code>
+  <h3>手风琴效果</h3>
+  <p>每次只能展开一个面板</p>
+  <Code>
         <template slot='source'>
           <gl-collapse v-model="activeName" accordion>
             <gl-collapse-item title="一致性 Consistency" name="1">
@@ -92,9 +92,9 @@
         </template>
         <template slot='description'>
           <p>通过 <code>accordion</code> 属性来设置是否以手风琴模式显示。</p>
-        </template>
-        <template slot='highlight'>
-          <pre><code class="hljs language-html">
+  </template>
+  <template slot='highlight'>
+    <pre><code class="hljs language-html">
             <span class="hljs-tag">&lt;<span class="hljs-name">gl-collapse</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"activeName"</span> <span class="hljs-attr">accordion</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">gl-collapse-item</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"一致性 Consistency"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"1"</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -124,11 +124,11 @@
               }
             </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
           </code></pre>
-        </template>
-    </Code>
-    <h3>自定义面板标题</h3>
-    <p>除了可以通过 <code>title</code> 属性以外，还可以通过具名 <code>slot</code> 来实现自定义面板的标题内容，以实现增加图标等效果。</p>
-    <Code>
+  </template>
+  </Code>
+  <h3>自定义面板标题</h3>
+  <p>除了可以通过 <code>title</code> 属性以外，还可以通过具名 <code>slot</code> 来实现自定义面板的标题内容，以实现增加图标等效果。</p>
+  <Code>
         <template slot='source'>
           <gl-collapse accordion>
             <gl-collapse-item>
@@ -180,138 +180,131 @@
               <span class="hljs-tag">&lt;/<span class="hljs-name">gl-collapse-item</span>&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">gl-collapse</span>&gt;</span>
           </code></pre>
-        </template>
-    </Code>
-    <h3>Collapse Attributes</h3>
-    <gl-table :table='table'></gl-table>
-    <h3>Collapse Events</h3>
-    <gl-table :table='Events'></gl-table>
-    <h3>Collapse Item Attributes</h3>
-    <gl-table :table='Item'></gl-table>
-  </div>
+  </template>
+  </Code>
+  <h3>Collapse Attributes</h3>
+  <gl-table :table='table'></gl-table>
+  <h3>Collapse Events</h3>
+  <gl-table :table='Events'></gl-table>
+  <h3>Collapse Item Attributes</h3>
+  <gl-table :table='Item'></gl-table>
+</div>
 </template>
 
-<script type='text/ecmascript-6'>
-  export default {
-    name: 'Collapse',
-    data () {
-      return {
-        activeNames: ['1'],
-        activeName: '1',
-        table: {
-            data: [
-              {
-                 parameter: 'accordion',
-                 state: '是否手风琴模式',
-                 mold: 'boolean',
-                 choose: '—',
-                 default: 'false'
-              },
-              {
-                 parameter: 'value',
-                 state: '当前激活的面板(如果是手风琴模式，绑定值类型需要为string，否则为array)',
-                 mold: 'string/array',
-                 choose: '—',
-                 default: '—'
-              }
-            ],
-            column: [
-              {
-                 label: '参数',
-                 prop: 'parameter'
-              },
-              {
-                 label: '说明',
-                 prop: 'state',
-                 width: '400'
-              },
-              {
-                 label: '类型',
-                 prop: 'mold'
-              },
-              {
-                 label: '可选值',
-                 prop: 'choose'
-              },
-              {
-                 label: '默认值',
-                 prop: 'default'
-               }
-            ]
-        },
-        Events: {
-            data: [
-              {
-                 parameter: 'change',
-                 state: '当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为string，否则为array)',
-                 mold: '(activeNames: array|string)',
-                 choose: '—',
-                 default: '—'
-              }
-            ],
-            column: [
-              {
-                 label: '事件名称',
-                 prop: 'parameter'
-              },
-              {
-                 label: '说明',
-                 prop: 'state'
-              },
-              {
-                 label: '回调参数',
-                 prop: 'mold'
-              }
-            ]
-        },
-        Item: {
-            data: [
-              {
-                 parameter: 'name',
-                 state: '唯一标志符',
-                 mold: 'string/number',
-                 choose: '—',
-                 default: '—'
-              },
-              {
-                 parameter: 'title',
-                 state: '面板标题',
-                 mold: 'string',
-                 choose: '—',
-                 default: '—'
-              }
-            ],
-            column: [
-              {
-                 label: '参数',
-                 prop: 'parameter'
-              },
-              {
-                 label: '说明',
-                 prop: 'state'
-              },
-              {
-                 label: '类型',
-                 prop: 'mold'
-              },
-              {
-                 label: '可选值',
-                 prop: 'choose'
-              },
-              {
-                 label: '默认值',
-                 prop: 'default'
-               }
-            ]
-        }
-      }
-    },
-    methods: {
-      handleChange(val) {
-        console.log(val)
+<script>
+export default {
+  name: 'Collapse',
+  data() {
+    return {
+      activeNames: ['1'],
+      activeName: '1',
+      table: {
+        data: [{
+            parameter: 'accordion',
+            state: '是否手风琴模式',
+            mold: 'boolean',
+            choose: '—',
+            default: 'false'
+          },
+          {
+            parameter: 'value',
+            state: '当前激活的面板(如果是手风琴模式，绑定值类型需要为string，否则为array)',
+            mold: 'string/array',
+            choose: '—',
+            default: '—'
+          }
+        ],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state',
+            width: '400'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default'
+          }
+        ]
+      },
+      Events: {
+        data: [{
+          parameter: 'change',
+          state: '当前激活面板改变时触发(如果是手风琴模式，参数 activeNames 类型为string，否则为array)',
+          mold: '(activeNames: array|string)',
+          choose: '—',
+          default: '—'
+        }],
+        column: [{
+            label: '事件名称',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '回调参数',
+            prop: 'mold'
+          }
+        ]
+      },
+      Item: {
+        data: [{
+            parameter: 'name',
+            state: '唯一标志符',
+            mold: 'string/number',
+            choose: '—',
+            default: '—'
+          },
+          {
+            parameter: 'title',
+            state: '面板标题',
+            mold: 'string',
+            choose: '—',
+            default: '—'
+          }
+        ],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default'
+          }
+        ]
       }
     }
+  },
+  methods: {
+    handleChange(val) {
+      console.log(val)
+    }
   }
+}
 </script>
 
 <style scoped>

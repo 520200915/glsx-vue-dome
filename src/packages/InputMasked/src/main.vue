@@ -166,14 +166,14 @@ export default {
     }
   },
   methods: {
-    valid(val, index, $event) {
+    valid(val, index, $event,value) {
       if (val.split('')[0] === '0' && val.length === 3) {
         if (index !== 3) {
           this.$refs.ip[index + 1].focus()
         }
       }
+      console.log(this.$refs)
       if (val.length === 3) if (index !== 3) this.$refs.ip[index + 1].focus()
-      if (index === 3 && val.length === 3) this.$refs.ip[index].blur()
       if (!reg.test(val)) this.ip_item[index].value = ''
       if (val > 255) this.ip_item[index].value = 255
       this.check($event)
@@ -228,6 +228,34 @@ export default {
     ipFocus(val, index, $event) {
       this.focused = true
       this.check($event)
+    },
+    fireKeyEvent(el, evtType, keyCode) {
+      var evtObj = null
+      if (document.createEvent) { 
+        if (window.KeyEvent) {//firefox 浏览器下模拟事件
+          evtObj = document.createEvent('KeyEvents')
+          evtObj.initKeyEvent(evtType, true, true, window, true, false, false, false, keyCode, 0)
+        } else {//chrome 浏览器下模拟事件
+          evtObj = document.createEvent('UIEvents')
+          evtObj.initUIEvent(evtType, true, true, window, 1)
+          delete evtObj.keyCode
+          if (typeof evtObj.keyCode === "undefined") {//为了模拟keycode
+            Object.defineProperty(evtObj, "keyCode", { value: keyCode })
+          } else {
+            evtObj.key = String.fromCharCode(keyCode)           
+          }
+          if (typeof evtObj.ctrlKey === 'undefined') {//为了模拟ctrl键
+            Object.defineProperty(evtObj, "ctrlKey", { value: true })
+          } else {
+            evtObj.ctrlKey = true
+          }
+        }
+        el.dispatchEvent(evtObj)
+      } else if (document.createEventObject) {//IE 浏览器下模拟事件
+        evtObj = document.createEventObject()
+        evtObj.keyCode = keyCode
+        el.fireEvent('on' + evtType, evtObj)
+      }
     }
   },
   mounted() {

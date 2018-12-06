@@ -1007,167 +1007,54 @@
             </code></pre>
         </template>
     </Code>
-    <h3>表格分页 - 1</h3>
-    <p>当数据过多时可以分页显示，第一种方式。</p>
+    <h3>自定义表格</h3>
+    <p>自定义表格，如添加可点击、可跳转等</p>
     <Code>
         <template slot='source'>
-            <gl-table :table='table12' :pagination='pagination'></gl-table>
+            <gl-table :table='tableDiy'>
+                <gl-table-column
+                    v-for="(i,index) in tableDiy.column"
+                    :key="index"
+                    :prop="i.prop"
+                    :label="i.label"
+                    align='center'
+                >
+                  <template slot-scope="scope">
+                    <template v-if='i.prop === "name"'>
+                      <a href="http://www.didihu.com.cn/ddhpc/index.jsp" target="_blank">{{tableDiy.data[index][i.prop]}}</a>
+                    </template>
+                    <template v-else-if="i.prop === 'date'">
+                        <i class="el-icon-time"></i>
+                        <span style="margin-left: 10px">{{tableDiy.data[index][i.prop]}}</span>
+                    </template>
+                    <template v-else-if='i.prop === "address"'>
+                      <a href="https://www.amap.com/place/B0FFHCPJFY" target="_blank" style="color:#606266">{{tableDiy.data[index][i.prop]}}</a>
+                    </template>
+                  </template>
+                </gl-table-column>
+            </gl-table>
         </template>
         <template slot='description'>
-            <p>只需在 <code>gl-table</code>里加入 <code>pagination</code>对象，并设置属性 <code>show</code>为true即可显示分页，更多属性请查看 <router-link to="/Pagination">分页组件</router-link> 。</p>
         </template>
         <template slot='highlight'>
-            <pre><code class="hljs language-html">
-                <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">gl-table</span>&nbsp;<span class="hljs-attr">:table</span>=<span class="hljs-string">"table12"</span>&nbsp;<span class="hljs-attr">:pagination</span>=<span class="hljs-string">"pagination"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-table</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-                    import axios from 'axios'
-                    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-                        data() {
-                            <span class="hljs-keyword">return</span> {
-                                <span class="hljs-attr">table12:</span>: {
-                                    border: 'true',
-                                    maxHeight: '450',
-                                    align: 'center',
-                                    <span class="hljs-attr">data:</span> [],
-                                    <span class="hljs-attr">column:</span> [
-                                        {
-                                            label: 'ID',
-                                            prop: 'id'
-                                        },
-                                        {
-                                            label: '地区',
-                                            prop: 'citys'
-                                        },
-                                        {
-                                            label: '日期',
-                                            prop: 'date'
-                                        },
-                                        {
-                                            label: '文本',
-                                            prop: 'txt'
-                                        },
-                                        {
-                                            label: '乱码'',
-                                            prop: 'guid'
-                                        },
-                                        {
-                                            label: '图片路径',
-                                            prop: 'image'
-                                        }
-                                    ],
-                                    pagination: {
-                                        show: true,
-                                        layout:"total, sizes, prev, pager, next, jumper",
-                                        style: {
-                                            marginTop: '20px'
-                                        }
-                                    }                               
-                                }
-                            }
-                        },
-                        mounted() {
-                            this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
-                                this.table12.data = res.data.data
-                            }).catch( err => {
-                                console.log(err)
-                            })
-                        }   
-                    }
-                </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-            </code></pre>
-        </template>
-    </Code>
-    <h3>表格分页 - 2</h3>
-    <p>当数据过多时可以分页显示，第二种方式。</p>
-    <Code>
-        <template slot='source'>
-            <gl-table :table='table14' :pagination='pagination2'></gl-table>
-        </template>
-        <template slot='description'>
-            <p>使用<code>formatter</code>格式化数据。使用<code>api</code>传入接口。</p>
-        </template>
-        <template slot='highlight'>
-            <pre><code class="hljs language-html">
-                <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">gl-table</span>&nbsp;<span class="hljs-attr">:table14</span>=<span class="hljs-string">"table12"</span>&nbsp;<span class="hljs-attr">:pagination</span>=<span class="hljs-string">"pagination2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gl-table</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-                    <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-                        data() {
-                            <span class="hljs-keyword">return</span> {
-                                <span class="hljs-attr">table14:</span>: {
-                                    border: 'true',
-                                    maxHeight: '450',
-                                    align: 'center',
-                                    <span class="hljs-attr">api:</span> 'http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list',
-                                    <span class="hljs-attr">column:</span> [
-                                        {
-                                            label: 'ID',
-                                            prop: 'id'
-                                        },
-                                        {
-                                            label: '地区',
-                                            prop: 'citys',
-                                            formatter:(row, column, cellValue, index) => {
-                                                return cellValue.substring(0, 6) + `（index：${index} ）\n：${index}`
-                                            }
-                                        },
-                                        {
-                                            label: '日期',
-                                            prop: 'date'
-                                        },
-                                        {
-                                            label: '文本',
-                                            prop: 'txt'',
-                                            formatter:(row, column, cellValue, index) => {
-                                                column.label = '林则徐名言'
-                                                return index === 0 ? '苟利国家生死以' : index === 1 ? '岂因祸福避趋之' : cellValue
-                                            }
-                                        },
-                                        {
-                                            label: '乱码'',
-                                            prop: 'guid',
-                                            formatter: (row, column, cellValue, index) => {
-                                                column.label = '还可以改标题'
-                                                return cellValue
-                                            }
-                                        },
-                                        {
-                                            label: '图片路径',
-                                            prop: 'image'
-                                        }
-                                    ],
-                                    pagination2: {
-                                        show: true,
-                                        background: true,
-                                        layout:"total, sizes, prev, pager, next, jumper",
-                                        style: {
-                                            marginTop: '20px'
-                                        }
-                                    }                               
-                                }
-                            }
-                        }
-                    }
-                </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-            </code></pre>
         </template>
     </Code>
     <h3>Table Attributes</h3>
     <gl-table :table='table13'></gl-table>
+    <h3>Table-column Attributes</h3>
+    <p><code> gl-table-column</code> 组件的属性</p>
+    <gl-table :table='tableColumn'></gl-table>
     <h3>Table Events</h3>
     <gl-table :table='Events'></gl-table>
-    <h3>Table-column Attributes</h3>
+    <h3>column Attributes</h3>
     <gl-table :table='Column'></gl-table>
-    <h3>Table-console</h3>
+    <h3>console</h3>
     <gl-table :table='ConsoleItem'></gl-table>
-    <h3>Table-number</h3>
+    <h3>number</h3>
     <gl-table :table='number'></gl-table>
-    <h3>Table-selection</h3>
+    <h3>selection</h3>
     <gl-table :table='selection'></gl-table>
-    <h3>Table-collapse</h3>
+    <h3>collapse</h3>
     <gl-table :table='collapse'></gl-table>
     <h3>Table Methods</h3>
     <gl-table :table='Methods'></gl-table>
@@ -1481,7 +1368,14 @@
                           type: 'primary',
                           icon: 'el-icon-delete',
                           callback: (index, rows) => {
+                              this.$confirm('确定要删除这条数据？', '', {
+                                confirmButtonText: '确定',
+                                cancelButtonText: '取消',
+                                type: 'warning'
+                            }).then(() => {
                               rows.splice(index, 1)
+                            }).catch(() => {
+                            })
                           }
                       },
                       {
@@ -1773,72 +1667,44 @@
                   prop: ['name', 'shop', 'id', 'shopId', 'category', 'address', 'desc']
               }
           },
-          table12: {
-              export: true,
-              border: true,
-              data: [],
-              align: 'center',
-              maxHeight: '450',
-              column: [
-                  {
-                      label: 'ID',
-                      prop: 'id',
-                       fixed: 'left'
-                  },
-                  {
-                      label: '地区',
-                      prop: 'citys'
-                  },
-                  {
-                      label: '日期',
-                      prop: 'date'
-                  },
-                  {
-                      label: '文本',
-                      prop: 'txt'
-                  },
-                  {
-                      label: '乱码',
-                      prop: 'guid'
-                  },
-                  {
-                      label: '图片路径',
-                      prop: 'image'
-                  }
+          tableDiy: {
+              data: [
+                {
+                    date: new Date().format("yyyy-MM-dd"),
+                    name: '嘀嘀虎',
+                    address: '深圳市南山区科兴科学园C3栋7楼'
+                },
+                {
+                    date: new Date().format("yyyy-MM-dd"),
+                    name: '嘀嘀虎',
+                    address: '深圳市南山区科兴科学园C3栋7楼'
+                },
+                {
+                    date: new Date().format("yyyy-MM-dd"),
+                    name: '嘀嘀虎',
+                    address: '深圳市南山区科兴科学园C3栋7楼'
+                },
+                {
+                    date: new Date().format("yyyy-MM-dd"),
+                    name: '嘀嘀虎',
+                    address: '深圳市南山区科兴科学园C3栋7楼'
+                }
               ],
-              selection: {
-              },       
-              number: {},
-              console: {
-                show: true,
-                label: '操作',
-                width: '150',
-                fixed: 'right',
-                button: [
-                    {
-                        type: 'primary',
-                        icon: 'el-icon-delete',
-                        callback: (index, rows) => {
-                            rows.splice(index, 1)
-                        }
-                    },
-                    {
-                        label: '编辑',
-                        type: 'text',
-                        callback: (index, rows) => {
-                            this.$alert(rows[index])
-                        }
-                    }
-                ]
-              }
-          },
-          pagination: {
-              show: true,
-              layout:"total, sizes, prev, pager, next, jumper",
-              pageSize: 10,
-              style: {
-                marginTop: '20px'
-              }
+              column: [
+                {
+                    label: '日期',
+                    prop: 'date',
+                    width: '180'
+                },
+                {
+                    label: '名称',
+                    prop: 'name'
+                },
+                {
+                    label: '地址',
+                    prop: 'address'
+                }
+            ]
           },
           table13: {
               data: [
@@ -2070,78 +1936,25 @@
                   }
               ]
           },
-          table14: {
-              export: true,
-              border: true,
-              api:'http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list',
-              align: 'center',
-              maxHeight: '450',
-              column: [
-                  {
-                      label: 'ID',
-                      prop: 'id'
-                  },
-                  {
-                      label: '地区',
-                      prop: 'citys',
-                      formatter:(row, column, cellValue, index) => {
-                        return cellValue.substring(0, 6) + `（index：${index} ）\n：${index}`
-                      }
-                  },
-                  {
-                      label: '日期',
-                      prop: 'date'
-                  },
-                  {
-                      label: '文本',
-                      prop: 'txt',
-                      formatter:(row, column, cellValue, index) => {
-                        column.label = '林则徐名言'
-                        return index === 0 ? 'formatter后：苟利国家生死以' : index === 1 ? 'formatter后：岂因祸福避趋之' : cellValue
-                      }
-                  },
-                  {
-                      label: '乱码',
-                      prop: 'guid',
-                      formatter: (row, column, cellValue, index) => {
-                        column.label = '← 还可以改标题'
-                        return cellValue
-                      }
-                  },
-                  {
-                      label: '图片路径',
-                      prop: 'image'
-                  }
-              ]
-          },
-          pagination2: {
-              show: true,
-              background: true,
-              layout:"total, sizes, prev, pager, next, jumper",
-              pageSize: 10,
-              style: {
-                marginTop: '20px'
-              }
-          },
           Events: {
               data: [
                 {
                     parameter: 'select',
-                    state: '当用户手动勾选数据行的 Checkbox 时触发的事件(自定义该事件时，导出表格多选会失效)',
+                    state: '当用户手动勾选数据行的 Checkbox 时触发的事件',
                     mold: 'selection, row',
                     choose: '—',
                     default: '—'
                 },
                 {
                     parameter: 'select-all',
-                    state: '当用户手动勾选全选 Checkbox 时触发的事件(自定义该事件时，导出表格多选会失效)',
+                    state: '当用户手动勾选全选 Checkbox 时触发的事件',
                     mold: 'selection',
                     choose: '—',
                     default: '—'
                 },
                 {
                     parameter: 'selection-change',
-                    state: '当选择项发生变化时会触发该事件，(自定义该事件时，导出表格多选会失效)',
+                    state: '当选择项发生变化时会触发该事件',
                     mold: 'selection',
                     choose: '—',
                     default: '—'
@@ -2725,6 +2538,221 @@
                     label: '参数',
                     prop: 'mold'
                 }
+              ]
+          },
+          tableColumn: {
+              data: [
+                {
+                    parameter: 'type',
+                    state: '对应列的类型。如果设置了 selection 则显示多选框；如果设置了 index 则显示该行的索引（从 1 开始计算）；如果设置了 expand 则显示为一个可展开的按钮',
+                    mold: 'string',
+                    choose: 'selection/index/expand',
+                    default: '—'
+                },
+                {
+                    parameter: 'index',
+                    state: '如果设置了 type=index，可以通过传递 index 属性来自定义索引',
+                    mold: 'string, Function(index)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'column-key',
+                    state: 'column 的 key，如果需要使用 filter-change 事件，则需要此属性标识是哪个 column 的筛选条件',
+                    mold: 'string',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'label',
+                    state: '显示的标题',
+                    mold: 'string',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'prop',
+                    state: '对应列内容的字段名，也可以使用 property 属性',
+                    mold: 'string',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'width',
+                    state: '对应列的宽度',
+                    mold: 'string',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'min-width',
+                    state: '对应列的最小宽度，与 width 的区别是 width 是固定的，min-width 会把剩余宽度按比例分配给设置了 min-width 的列',
+                    mold: 'string',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'fixed',
+                    state: '列是否固定在左侧或者右侧，true 表示固定在左侧',
+                    mold: 'string, boolean',
+                    choose: 'true, left, right',
+                    default: '—'
+                },
+                {
+                    parameter: 'render-header',
+                    state: '列标题 Label 区域渲染使用的 Function',
+                    mold: 'Function(h, { column, $index })',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'sortable',
+                    state: "对应列是否可以排序，如果设置为 'custom'，则代表用户希望远程排序，需要监听 Table 的 sort-change 事件",
+                    mold: 'boolean, string',
+                    choose: "true, false, 'custom'",
+                    default: 'false'
+                },
+                {
+                    parameter: 'sort-method',
+                    state: '对数据进行排序的时候使用的方法，仅当 sortable 设置为 true 的时候有效，需返回一个数字，和 Array.sort 表现一致',
+                    mold: 'Function(a, b)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'sort-by',
+                    state: '指定数据按照哪个属性进行排序，仅当 sortable 设置为 true 且没有设置 sort-method 的时候有效。如果 sort-by 为数组，则先按照第 1 个属性排序，如果第 1 个相等，再按照第 2 个排序，以此类推',
+                    mold: 'String/Array/Function(row, index)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'sort-orders',
+                    state: '数据在排序时所使用排序策略的轮转顺序，仅当 sortable 为 true 时有效。需传入一个数组，随着用户点击表头，该列依次按照数组中元素的顺序进行排序',
+                    mold: 'array',
+                    choose: '数组中的元素需为以下三者之一：ascending 表示升序，descending 表示降序，null 表示还原为原始顺序',
+                    default: "['ascending', 'descending', null]"
+                },
+                {
+                    parameter: 'resizable',
+                    state: '对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）',
+                    mold: 'boolean',
+                    choose: '—',
+                    default: 'true'
+                },
+                {
+                    parameter: 'formatter',
+                    state: '用来格式化内容',
+                    mold: 'Function(row, column, cellValue, index)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'show-overflow-tooltip',
+                    state: '当内容过长被隐藏时显示 tooltip',
+                    mold: 'Boolean',
+                    choose: '—',
+                    default: 'false'
+                },
+                {
+                    parameter: 'align',
+                    state: '对齐方式',
+                    mold: 'String',
+                    choose: 'left/center/right',
+                    default: 'left'
+                },
+                {
+                    parameter: 'header-align',
+                    state: '表头对齐方式，若不设置该项，则使用表格的对齐方式',
+                    mold: 'String',
+                    choose: 'left/center/right',
+                    default: '—'
+                },
+                {
+                    parameter: 'class-name',
+                    state: '列的 className',
+                    mold: 'String',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'label-class-name',
+                    state: '当前列标题的自定义类名',
+                    mold: 'String',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'selectable',
+                    state: '仅对 type=selection 的列有效，类型为 Function，Function 的返回值用来决定这一行的 CheckBox 是否可以勾选',
+                    mold: 'Function(row, index)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'reserve-selection',
+                    state: '仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）',
+                    mold: 'Boolean',
+                    choose: '—',
+                    default: 'false'
+                },
+                {
+                    parameter: 'filters',
+                    state: '数据过滤的选项，数组格式，数组中的元素需要有 text 和 value 属性。',
+                    mold: 'Array[{ text, value }]',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'filter-placement',
+                    state: '过滤弹出框的定位',
+                    mold: 'String',
+                    choose: '与 Tooltip 的 placement 属性相同',
+                    default: '—'
+                },
+                {
+                    parameter: 'filter-multiple	',
+                    state: '数据过滤的选项是否多选',
+                    mold: 'Boolean',
+                    choose: '—',
+                    default: 'true'
+                },
+                {
+                    parameter: 'filter-method',
+                    state: '数据过滤使用的方法，如果是多选的筛选项，对每一条数据会执行多次，任意一次返回 true 就会显示。',
+                    mold: 'Function(value, row, column)',
+                    choose: '—',
+                    default: '—'
+                },
+                {
+                    parameter: 'filtered-value',
+                    state: '选中的数据过滤项，如果需要自定义表头过滤的渲染方式，可能会需要此属性。',
+                    mold: 'Array',
+                    choose: '—',
+                    default: '—'
+                }
+              ],
+              column: [
+                {
+                    label: '参数',
+                    prop: 'parameter'
+                },
+                {
+                    label: '说明',
+                    prop: 'state'
+                },
+                {
+                    label: '类型',
+                    prop: 'mold'
+                },
+                {
+                    label: '可选值',
+                    prop: 'choose'
+                },
+                {
+                    label: '默认值',
+                    prop: 'default'
+                  }
               ]
           },
           currentRow: null,

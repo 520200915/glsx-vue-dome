@@ -44,6 +44,7 @@ import Switch from './Switch'
 import Steps from './Steps'
 import Step from './Step'
 import Table from './Table'
+import TableColumn from './TableColumn'
 import Tag from './Tag'
 import TimePicker from './TimePicker'
 import TimeSelect from './TimeSelect'
@@ -108,6 +109,7 @@ export {
   Steps,
   Step,
   Table,
+  TableColumn,
   Tag,
   TimePicker,
   TimeSelect,

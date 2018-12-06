@@ -88,8 +88,7 @@ const routers = [
   Carousel,
   Collapse
 ]
-const getRouters = () => {
-  let arr = []
+const getRouters = (arr = []) => {
   for (const iterator of routers) {
     arr.push({
       path: `/${iterator.name}`,
@@ -98,7 +97,7 @@ const getRouters = () => {
     })
   }
   return arr
-}
+} 
 Vue.use(Router)
 export default new Router({
   routes: getRouters()

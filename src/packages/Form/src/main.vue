@@ -17,9 +17,8 @@
     provide() {
       return {
         glForm: this
-      };
+      }
     },
-
     props: {
       model: Object,
       rules: Object,

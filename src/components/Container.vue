@@ -1,17 +1,17 @@
 <template>
-    <div class="box">
-        <h2>Container 布局容器</h2>
-        <p>用于布局的容器组件，方便快速搭建页面的基本结构：</p>
-        <p><code>&lt;gl-container&gt;</code>：外层容器。当子元素中包含 <code>&lt;gl-header&gt;</code> 或 <code>&lt;gl-footer&gt;</code> 时，全部子元素会垂直上下排列，否则会水平左右排列。</p>
-        <p><code>&lt;gl-header&gt;</code>：顶栏容器。</p>
-        <p><code>&lt;gl-aside&gt;</code>：侧边栏容器。</p>
-        <p><code>&lt;gl-main&gt;</code>：主要区域容器。</p>
-        <p><code>&lt;gl-footer&gt;</code>：底栏容器。</p>
-        <div class="tip">
-            <p>以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，<code>&lt;gl-container&gt;</code> 的子元素只能是后四者，后四者的父元素也只能是 <code>&lt;gl-container&gt;</code></p>
-        </div>
-        <h3>常见页面布局</h3>
-        <Code>
+<div class="box">
+  <h2>Container 布局容器</h2>
+  <p>用于布局的容器组件，方便快速搭建页面的基本结构：</p>
+  <p><code>&lt;gl-container&gt;</code>：外层容器。当子元素中包含 <code>&lt;gl-header&gt;</code> 或 <code>&lt;gl-footer&gt;</code> 时，全部子元素会垂直上下排列，否则会水平左右排列。</p>
+  <p><code>&lt;gl-header&gt;</code>：顶栏容器。</p>
+  <p><code>&lt;gl-aside&gt;</code>：侧边栏容器。</p>
+  <p><code>&lt;gl-main&gt;</code>：主要区域容器。</p>
+  <p><code>&lt;gl-footer&gt;</code>：底栏容器。</p>
+  <div class="tip">
+    <p>以上组件采用了 flex 布局，使用前请确定目标浏览器是否兼容。此外，<code>&lt;gl-container&gt;</code> 的子元素只能是后四者，后四者的父元素也只能是 <code>&lt;gl-container&gt;</code></p>
+  </div>
+  <h3>常见页面布局</h3>
+  <Code>
             <template slot="source">
                 <gl-container>
                     <gl-header>Header</gl-header>
@@ -154,10 +154,10 @@
                         }
                     </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
                     </code></pre>
-            </template>
-        </Code>
-        <h3>实例</h3>
-        <Code>
+  </template>
+  </Code>
+  <h3>实例</h3>
+  <Code>
             <template slot="source">
                 <gl-container style="height: 500px; border: 1px solid #eee">
                     <gl-aside width="200px" style="background-color: rgb(238, 241, 246)">
@@ -334,210 +334,209 @@
                     }
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
                 </code></pre>
-            </template>
-        </Code>
-        <h3>Container Attributes</h3>
-        <gl-table :table='container'></gl-table>
-        <h3>Header Attributes</h3>
-        <gl-table :table='header'></gl-table>
-        <h3>Aside Attributes</h3>
-        <gl-table :table='aside'></gl-table>
-        <h3>Footer Attributes</h3>
-        <gl-table :table='footer'></gl-table>
-    </div>
+  </template>
+  </Code>
+  <h3>Container Attributes</h3>
+  <gl-table :table='container'></gl-table>
+  <h3>Header Attributes</h3>
+  <gl-table :table='header'></gl-table>
+  <h3>Aside Attributes</h3>
+  <gl-table :table='aside'></gl-table>
+  <h3>Footer Attributes</h3>
+  <gl-table :table='footer'></gl-table>
+</div>
 </template>
 
-<script type='text/ecmascript-6'>
-  export default {
-    name: 'Container',
-    data () {
-      const item = {
-        date: new Date().format("yyyy-MM-dd"),
-        name: '嘀嘀虎',
-        address: '深圳市南山区科兴科学园C3栋7楼广联赛讯'
-      }
-      return {
-        table: {
-            data: Array(20).fill(item),
-            column: [
-                { label: '日期', prop: 'date', width: '140' },
-                { label: '名字', prop: 'name', width: '120' },
-                { label: '地址', prop: 'address' }
-            ]
-        },
-        container: {
-            data: [
-                {
-                    parameter: 'direction',
-                    state: '子元素的排列方向',
-                    mold: 'string',
-                    choose: 'horizontal / vertical',
-                    default: '子元素中有 el-header 或 el-footer 时为 vertical，否则为 horizontal'
-                }
-                ],
-            column: [
-                {
-                    label: '参数',
-                    prop: 'parameter'
-                },
-                {
-                    label: '说明',
-                    prop: 'state'
-                },
-                {
-                    label: '类型',
-                    prop: 'mold'
-                },
-                {
-                    label: '可选值',
-                    prop: 'choose'
-                },
-                {
-                    label: '默认值',
-                    prop: 'default',
-                    width: '250'
-                }
-            ]
-        },
-        header: {
-            data: [
-                {
-                    parameter: 'height',
-                    state: '顶栏高度',
-                    mold: 'string',
-                    choose: '——',
-                    default: '60px'
-                }
-                ],
-            column: [
-                {
-                    label: '参数',
-                    prop: 'parameter'
-                },
-                {
-                    label: '说明',
-                    prop: 'state'
-                },
-                {
-                    label: '类型',
-                    prop: 'mold'
-                },
-                {
-                    label: '可选值',
-                    prop: 'choose'
-                },
-                {
-                    label: '默认值',
-                    prop: 'default',
-                    width: '250'
-                }
-            ]
-        },
-        aside: {
-            data: [
-                {
-                    parameter: 'width',
-                    state: '侧边栏宽度',
-                    mold: 'string',
-                    choose: '——',
-                    default: '300px'
-                }
-                ],
-            column: [
-                {
-                    label: '参数',
-                    prop: 'parameter'
-                },
-                {
-                    label: '说明',
-                    prop: 'state'
-                },
-                {
-                    label: '类型',
-                    prop: 'mold'
-                },
-                {
-                    label: '可选值',
-                    prop: 'choose'
-                },
-                {
-                    label: '默认值',
-                    prop: 'default',
-                    width: '250'
-                }
-            ]
-        },
-        footer: {
-            data: [
-                {
-                    parameter: 'height',
-                    state: '底栏高度',
-                    mold: 'string',
-                    choose: '——',
-                    default: '60px'
-                }
-                ],
-            column: [
-                {
-                    label: '参数',
-                    prop: 'parameter'
-                },
-                {
-                    label: '说明',
-                    prop: 'state'
-                },
-                {
-                    label: '类型',
-                    prop: 'mold'
-                },
-                {
-                    label: '可选值',
-                    prop: 'choose'
-                },
-                {
-                    label: '默认值',
-                    prop: 'default',
-                    width: '250'
-                }
-            ]
-        }
+<script>
+export default {
+  name: 'Container',
+  data() {
+    const item = {
+      date: new Date().format("yyyy-MM-dd"),
+      name: '嘀嘀虎',
+      address: '深圳市南山区科兴科学园C3栋7楼广联赛讯'
+    }
+    return {
+      table: {
+        data: Array(20).fill(item),
+        column: [{
+            label: '日期',
+            prop: 'date',
+            width: '140'
+          },
+          {
+            label: '名字',
+            prop: 'name',
+            width: '120'
+          },
+          {
+            label: '地址',
+            prop: 'address'
+          }
+        ]
+      },
+      container: {
+        data: [{
+          parameter: 'direction',
+          state: '子元素的排列方向',
+          mold: 'string',
+          choose: 'horizontal / vertical',
+          default: '子元素中有 el-header 或 el-footer 时为 vertical，否则为 horizontal'
+        }],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default',
+            width: '250'
+          }
+        ]
+      },
+      header: {
+        data: [{
+          parameter: 'height',
+          state: '顶栏高度',
+          mold: 'string',
+          choose: '——',
+          default: '60px'
+        }],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default',
+            width: '250'
+          }
+        ]
+      },
+      aside: {
+        data: [{
+          parameter: 'width',
+          state: '侧边栏宽度',
+          mold: 'string',
+          choose: '——',
+          default: '300px'
+        }],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default',
+            width: '250'
+          }
+        ]
+      },
+      footer: {
+        data: [{
+          parameter: 'height',
+          state: '底栏高度',
+          mold: 'string',
+          choose: '——',
+          default: '60px'
+        }],
+        column: [{
+            label: '参数',
+            prop: 'parameter'
+          },
+          {
+            label: '说明',
+            prop: 'state'
+          },
+          {
+            label: '类型',
+            prop: 'mold'
+          },
+          {
+            label: '可选值',
+            prop: 'choose'
+          },
+          {
+            label: '默认值',
+            prop: 'default',
+            width: '250'
+          }
+        ]
       }
     }
   }
+}
 </script>
 
 <style scoped>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .gl-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  .source>section{
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+.el-header,
+.el-footer {
+  background-color: #B3C0D1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #D3DCE6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.gl-main {
+  background-color: #E9EEF3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+.source>section {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
 </style>

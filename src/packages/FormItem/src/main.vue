@@ -47,7 +47,6 @@
         glFormItem: this
       }
     },
-
     inject: ['glForm'],
     props: {
       label: String,
@@ -108,8 +107,8 @@
         return ret;
       },
       form() {
-        let parent = this.$parent;
-        let parentName = parent.$options.componentName;
+        let parent = this.$parent
+        let parentName = parent.$options.componentName
         while (parentName !== 'GlForm') {
           if (parentName === 'GlFormItem') {
             this.isNested = true;
@@ -257,7 +256,6 @@
           this.validateDisabled = false;
           return;
         }
-
         this.validate('change');
       }
     },

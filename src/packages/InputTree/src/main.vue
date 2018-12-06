@@ -5,6 +5,7 @@
       :placeholder="placeholder"
       :suffix-icon="icon"
       @blur="closeTree"
+      @clear='clear'
       clearable
       class="input"
       ref="input"
@@ -87,13 +88,16 @@
       value(val) {
         this.model_ = val
       },
-      model_(val) {
+      model_(val) {  
         const data = this.data
         this.data_ = val === '' ? this.data : []
         if (val !== '') this.searchLabel(data)
       }
     },
     methods: {
+      clear() {
+        this.$emit('input', this.model_)
+      },
       searchLabel(data) {
         data.forEach(el => {
           if (el[this.props.label].indexOf(this.model_) !== -1) {

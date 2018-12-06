@@ -31,6 +31,24 @@
 <script>
     export default {
       name: 'GlInput',
+      inject: {
+        glForm: {
+          default: ''
+        },
+        glFormItem: {
+          default: ''
+        }
+      },
+      provide() {
+        return {
+          // elForm: this.$refs.input.$options.glForm,
+          // elFormItem: this.$refs.input.$parent.glFormItem
+        }
+      },
+      mounted() {
+        console.log(this.$refs.input)
+        // console.log(this.elFormItem)
+      },
       props: {
         value: {
           type: null
