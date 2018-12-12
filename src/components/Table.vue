@@ -9,7 +9,7 @@
             <gl-table :table='table'></gl-table>
         </template>
         <template slot='description'>
-            <p>当<code>gl-table</code>元素中注入<code>table</code>对象后，<code>data</code>为数据 ，中用<code>column</code>数组来对应对象中的键名即可填入数据，用<code>label</code>属性来定义表格的列名。<code>prop</code>属性来定义列表需要渲染的数据，可以使用<code>width</code>属性来定义列宽。<code>export</code>显示导出表格组件</p>
+            <p>当<code>gl-table</code>元素中注入<code>table</code>对象后，<code>data</code>为数据 ，中用<code>column</code>数组来对应对象中的键名即可填入数据，用<code>label</code>属性来定义表格的列名。<code>prop</code>属性来定义列表需要渲染的数据，可以使用<code>width</code>属性来定义列宽。<code>export:true</code>显示导出表格按钮,<code>import:false</code>隐藏导入表格按钮。</p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -22,6 +22,7 @@
                             <span class="hljs-keyword">return</span> {
                                 <span class="hljs-attr">table:</span>: {
                                     export: true,
+                                    import:false,
                                     <span class="hljs-attr">data:</span> [
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
@@ -86,7 +87,8 @@
                       data() {
                           <span class="hljs-keyword">return</span> {
                               <span class="hljs-attr">table:</span>: {
-                                  export: true               
+                                  export: false,
+                                  import:true               
                               }
                           }
                       }
@@ -392,14 +394,14 @@
             </code></pre>
         </template>
     </Code>
-    <h3>固定列</h3>
-    <p>横向内容过多时，可选择固定列。</p>
+    <h3>固定列与排序</h3>
+    <p>横向内容过多时，可选择固定列。 排序</p>
     <Code>
         <template slot='source'>
             <gl-table :table='table6' style="width: 100%;"></gl-table>
         </template>
         <template slot='description'>
-            <p>固定列需要使用<code>fixed</code>属性，它接受 Boolean 值或者<code>left</code><code>right</code>，表示左边固定还是右边固定。<code>console</code>属性显示控制台,默认固定在表格右边。</p>
+            <p>固定列需要使用<code>fixed</code>属性，它接受 Boolean 值或者<code>left</code><code>right</code>，表示左边固定还是右边固定。<code>console</code>属性显示控制台,默认固定在表格右边。排序需传入 <code>defaultSort</code>在column里传入 <code>sortable:true</code>。 </p>
         </template>
         <template slot='highlight'>
             <pre><code class="hljs language-html">
@@ -412,66 +414,35 @@
                             <span class="hljs-keyword">return</span> {
                                 <span class="hljs-attr">table6:</span>: {
                                     <span class="hljs-attr">border:</span> <span class="hljs-string">'true'</span>,
+                                    <span class="hljs-attr">defaultSort:</span> <span class="hljs-string">{prop: 'date', order: 'descending'}</span>,
                                     <span class="hljs-attr">data:</span> [
                                         {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-2</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎-2'</span>,
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
                                             <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-3</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎-3'</span>,
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
                                             <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-1</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎-1'</span>,
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
                                             <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
                                         },
                                         {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
-                                            <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
-                                            <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
-                                            <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
-                                        },
-                                        {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
-                                            <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
-                                            <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
-                                            <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
-                                        },
-                                        {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
-                                            <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
-                                            <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
-                                            <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
-                                        },
-                                        {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
-                                            <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
-                                            <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
-                                            <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
-                                        },
-                                        {
-                                            <span class="hljs-attr">date:</span> <span class="hljs-string">new Date().format("yyyy-MM-dd")</span>,
-                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎'</span>,
+                                            <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-4</span>,
+                                            <span class="hljs-attr">name:</span> <span class="hljs-string">'嘀嘀虎-4'</span>,
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
@@ -525,6 +496,9 @@
                                                 <span class="hljs-attr">type:</span> <span class="hljs-string">'text'</span>,
                                                 <span class="hljs-attr">callback:</span> <span class="hljs-string">(index, rows)</span> => {
                                                     <span class="hljs-string">this.$alert</span>(rows[index])
+                                                },
+                                                <span class="hljs-attr">formatter:</span> <span class="hljs-string">(row, column, index)</span> => {
+                                                    <span class="hljs-string">return</span> index
                                                 }
                                             }
                                         ]
@@ -1007,7 +981,7 @@
             </code></pre>
         </template>
     </Code>
-    <h3>自定义表格</h3>
+    <h3>自定义表格1</h3>
     <p>自定义表格，如添加可点击、可跳转等</p>
     <Code>
         <template slot='source'>
@@ -1018,17 +992,86 @@
                     :prop="i.prop"
                     :label="i.label"
                     align='center'
-                >
-                  <template slot-scope="scope">
+                    >
+                  <template slot-scope="test">
                     <template v-if='i.prop === "name"'>
-                      <a href="http://www.didihu.com.cn/ddhpc/index.jsp" target="_blank">{{tableDiy.data[index][i.prop]}}</a>
+                      <a href="http://www.didihu.com.cn/ddhpc/index.jsp" target="_blank">{{tableDiy.data[test.scope.$index][i.prop]}}</a>
                     </template>
                     <template v-else-if="i.prop === 'date'">
                         <i class="el-icon-time"></i>
-                        <span style="margin-left: 10px">{{tableDiy.data[index][i.prop]}}</span>
+                        <span style="margin-left: 10px">{{tableDiy.data[test.scope.$index][i.prop]}}</span>
                     </template>
                     <template v-else-if='i.prop === "address"'>
-                      <a href="https://www.amap.com/place/B0FFHCPJFY" target="_blank" style="color:#606266">{{tableDiy.data[index][i.prop]}}</a>
+                      <a href="https://www.amap.com/place/B0FFHCPJFY" target="_blank" style="color:#606266">{{tableDiy.data[test.scope.$index][i.prop]}}</a>
+                    </template>
+                  </template>
+                </gl-table-column>
+            </gl-table>
+        </template>
+        <template slot='description'>
+            <p>通过 <code>Scoped slot</code> 可以获取到 row, column, $index 和 store（table 内部的状态管理）的数据。</p>
+        </template>
+        <template slot='highlight'>
+            <pre><code class="hljs language-html">
+                
+                &lt;<span class="hljs-name">gl-table :table='table'&gt;
+                    &lt;gl-table-column
+                        v-for="(i,index) in table&#46;column"
+                        :key="index"
+                        :prop="i&#46;prop"
+                        :label="i&#46;label"
+                        align='center'
+                        &gt;
+                        &lt;template slot-scope="test"&gt;
+                            &lt;template v-if='i&#46;prop === "name"'&gt;
+                                &lt;a 
+                                    href="http://www.didihu.com.cn/ddhpc/index.jsp" 
+                                    target="_blank"&gt;
+                                    &#123;{table&#46;data<span>[test&#46;scope&#46;$index]</span>[i&#46;prop]}}
+                                &lt;/a&gt;
+                            &lt;/template&gt;
+                            &lt;template v-else-if="i&#46;prop === 'date'"&gt;
+                                &lt;i class="el-icon-time">&lt;/i&gt;
+                                &lt;span style="margin-left: 10px"&gt;&#123;{table&#46;data <span> [test&#46;scope&#46;$index]</span>[i&#46;prop]}}&lt;/span&gt;
+                            &lt;/template&gt;
+                            &lt;template v-else-if='i&#46;prop === "address"'&gt;
+                                &lt;a href="https://www.amap.com/place/B0FFHCPJFY" 
+                                    target="_blank" 
+                                    style="color:#606266"&gt;
+                                    &#123;{table&#46;data<span>[test&#46;scope&#46;$index]</span>[i&#46;prop]}}
+                                &lt;/a&gt;
+                            &lt;/template&gt;
+                        &lt;/template&gt;
+                    &lt;/gl-table-column&gt;
+                &lt;/gl-table&gt;</span>
+            </code></pre>
+        </template>
+    </Code>
+    <h3>自定义表格2</h3>
+    <p>可在表格里嵌套其他组件</p>
+    <Code>
+        <template slot='source'>
+            <gl-table :table='tableDiy'>
+                <gl-table-column
+                    v-for="(i,index) in tableDiy.column"
+                    :key="index"
+                    :prop="i.prop"
+                    :label="i.label"
+                    align='center'
+                    >
+                  <template slot-scope="test">
+                    <template v-if='i.prop === "name"'>
+                      <a href="http://www.didihu.com.cn/ddhpc/index.jsp" target="_blank">{{tableDiy.data[test.scope.$index][i.prop]}}</a>
+                    </template>
+                    <template v-else-if="i.prop === 'date'">
+                        <gl-date-picker
+                            v-model="tableDiy.data[test.scope.$index][i.prop]"
+                            type="date"
+                            placeholder="选择日期">
+                        </gl-date-picker>
+                    </template>
+                    <template v-else-if='i.prop === "address"'>
+                      <a href="https://www.amap.com/place/B0FFHCPJFY" target="_blank" style="color:#606266">{{tableDiy.data[test.scope.$index][i.prop]}}</a>
                     </template>
                   </template>
                 </gl-table-column>
@@ -1067,10 +1110,12 @@
     data () {
       return {
           importTable: {
-            export: true
+            export: false,
+            import: true,
           },
           table: {
             export: true,
+            import: false,
             data: [
               {
               date: new Date().format("yyyy-MM-dd"),
@@ -1291,34 +1336,35 @@
           },
           table6: {
               border: true,
+              defaultSort: {prop: 'date', order: 'descending'},
               data: [
                   {
-                  date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  date: '2018-10-2',
+                  name: '嘀嘀虎-2',
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
                   zip: 518000
                   },
                   {
-                  date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  date: '2018-10-3',                  
+                  name: '嘀嘀虎-3',
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
                   zip: 518000
                   },
                   {
-                  date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  date: '2018-10-1',
+                  name: '嘀嘀虎-1',
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
                   zip: 518000
                   },
                   {
-                  date: new Date().format("yyyy-MM-dd"),
-                  name: '嘀嘀虎',
+                  date: '2018-10-4',
+                  name: '嘀嘀虎-4',
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
@@ -1330,7 +1376,8 @@
                   label: '日期',
                   prop: 'date',
                   width: '180',
-                  fixed: 'left'
+                  fixed: 'left',
+                  sortable: true
                   },
                   {
                   label: '名称',
@@ -1385,7 +1432,7 @@
                               this.$alert(rows[index])
                           },
                           formatter: ( row, column, index) => {
-                              return '123'
+                              return index
                           }
                       }
                   ]
@@ -1671,22 +1718,22 @@
               data: [
                 {
                     date: new Date().format("yyyy-MM-dd"),
-                    name: '嘀嘀虎',
+                    name: '嘀嘀虎1',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                 },
                 {
                     date: new Date().format("yyyy-MM-dd"),
-                    name: '嘀嘀虎',
+                    name: '嘀嘀虎2',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                 },
                 {
                     date: new Date().format("yyyy-MM-dd"),
-                    name: '嘀嘀虎',
+                    name: '嘀嘀虎3',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                 },
                 {
                     date: new Date().format("yyyy-MM-dd"),
-                    name: '嘀嘀虎',
+                    name: '嘀嘀虎4',
                     address: '深圳市南山区科兴科学园C3栋7楼'
                 }
               ],
@@ -2760,6 +2807,9 @@
       }
     },
     methods: {
+        selectionChange: val =>{
+                  console.log(val)
+              },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
           return 'warning-row'
@@ -2788,11 +2838,6 @@
       }
     },
     mounted() {
-      this.$axios.get('http://192.168.3.171:7300/mock/5b0ed7dbf189006180803286/standard/table/list').then( res => {
-        this.table12.data = res.data.data
-      }).catch( err => {
-        console.log(err)
-      })
     }
   }
 </script>

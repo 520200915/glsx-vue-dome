@@ -135,23 +135,26 @@
               :key="index"
               :type="i.type"
               :size="i.size"
-              :icon="i.icon"
+              :icon="i.icon"   
               @click.native.prevent="i.callback(scope.$index, table.data)"
             >
-              <template v-if="i.formatter">{{i.formatter( scope.row, scope.column, scope.$index)}}</template>
-              <template v-else>{{i.label}}</template>
+              {{i.formatter ? i.formatter( scope.row, scope.column, scope.$index ) : i.label}}
             </el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
-    <div v-if="table.export === true" class="export" @keyup="keyupDialog($event)">
-      <el-button @click="openDialog">导出表格</el-button>
-      <el-button class="importBox">
-        <input type="file" @change="importXlsx" ref="files">
-        <span class="importBox-txt">导入表格</span>
-      </el-button>
-      <span class="importBox-tips">{{fileName === '' ? '未选择任何文件' : fileName}}</span>
+    <div v-if="table.export || table.import" class="export" @keyup="keyupDialog">
+      <template v-if="table.export">
+        <el-button @click="openDialog">导出表格</el-button>
+      </template>
+      <template v-if='table.import'>
+        <el-button class="importBox">
+          <input type="file" @change="importXlsx" ref="files">
+          <span class="importBox-txt">导入表格</span>
+        </el-button>
+        <span class="importBox-tips">{{fileName === '' ? '未选择任何文件' : fileName}}</span>
+      </template>
     </div>
     <el-dialog title="选择导出数据" :visible.sync="centerDialogVisible" width="30%" center>
       <el-radio-group v-model="radio" style="text-align:center;display:block;">
@@ -234,9 +237,9 @@ export default {
         this.table.selectAll === undefined
           ? () => null
           : this.table.selectAll,
-      selectionChange:
-        this.table.selectionChange === undefined
-          ? () => null
+      selectionChange: 
+        this.table.selectAll === undefined
+          ? this._selectionChange
           : this.table.selectionChange,
       currentChange:
         this.table.currentChange === undefined
@@ -263,9 +266,9 @@ export default {
     importXlsx() {
       const file = this.$refs.files.files[0]
       if (file) {
-        if (file.name.split('.')[1].toLowerCase() === 'xlsx') {
-          this.table.column = []
-          this.table.data = []
+        let name = file.name.split('.')
+        const fileName = name[name.length - 1]
+        if (fileName.toLowerCase() === 'xlsx') {
           const reader = new FileReader()
           reader.onload = e => {
             const workbook = XLSX.read(e.target.result, {
@@ -310,10 +313,9 @@ export default {
             }
             for (const iterator of data) {
               if (iterator) arr.push(iterator)
-            }
-            this.$set(this.table, 'data', arr)
+            }       
             this.$set(this.table, 'column', column)
-            this.data_ = this.table.data
+            this.$set(this.table, 'data', arr)
           }
           reader.readAsBinaryString(file)
         } else {
@@ -332,6 +334,9 @@ export default {
     },
     keyupDialog(event) {
       if (event.key === 'Enter' && this.centerDialogVisible === true) { this.exportTable() }
+    },
+    _selectionChange(val) {
+      this.selectionItem = val
     },
     // 导出
     exportTable() {

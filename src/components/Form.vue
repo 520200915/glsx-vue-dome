@@ -246,7 +246,7 @@
             </code></pre>
         </template>
     </Code>
-    <h3>表单验证</h3>
+    <!-- <h3>表单验证</h3>
     <p>在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。</p>
     <Code>
         <template slot='source'>
@@ -411,8 +411,8 @@
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
             </code></pre>
         </template>
-    </Code>
-    <h3>自定义校验规则</h3>
+    </Code> -->
+    <!-- <h3>自定义校验规则</h3>
     <p>这个例子中展示了如何使用自定义验证规则来完成密码的二次验证。</p>
     <Code>
         <template slot='source'>
@@ -528,7 +528,7 @@
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
             </code></pre>
         </template>
-    </Code>
+    </Code> -->
     <h3>动态增减表单项</h3>
     <Code>
         <template slot='source'>
@@ -552,7 +552,8 @@
                     required: true, message: '域名不能为空', trigger: 'blur'
                     }"
                 >
-                    <gl-input v-model="domain.value"></gl-input><gl-button @click.prevent="removeDomain(domain)">删除</gl-button>
+                    <gl-input v-model="domain.value"></gl-input>
+                    <gl-button @click.prevent="removeDomain(domain)" style="margin-top:22px;">删除</gl-button>
                 </gl-form-item>
                 <gl-form-item>
                     <gl-button type="primary" @click="submitForm('dynamicValidateForm')">提交</gl-button>
@@ -638,7 +639,7 @@
             </code></pre>
         </template>
     </Code>
-    <h3>数字类型验证</h3>
+    <!-- <h3>数字类型验证</h3>
     <Code>
         <template slot='source'>
             <gl-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm" style="width:460px;">
@@ -707,7 +708,7 @@
                 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
             </code></pre>
         </template>
-    </Code>
+    </Code> -->
     <div class="tip"><p>嵌套在 <code>gl-form-item</code> 中的 <code>gl-form-item</code> 标签宽度默认为零，不会继承 <code>gl-form</code> 的 <code>label-width</code>。如果需要可以为其单独设置 <code>label-width</code> 属性。</p></div>
     <h3>表单内组件尺寸控制</h3>
     <p>通过设置 Form 上的 <code>size</code> 属性可以使该表单内所有可调节大小的组件继承该尺寸。Form-Item 也具有该属性。</p>
@@ -822,8 +823,8 @@
     </Code>
     <h3>Form Attributes</h3>
     <gl-table :table='table'></gl-table>
-    <h3>Form Methods</h3>
-    <gl-table :table='Methods'></gl-table>
+    <!-- <h3>Form Methods</h3>
+    <gl-table :table='Methods'></gl-table> -->
     <h3>Form Events</h3>
     <gl-table :table='Events'></gl-table>
     <h3>Form-Item Attributes</h3>
@@ -973,13 +974,13 @@
                      choose: '—',
                      default: '—'
                   },
-                  {
-                     parameter: 'rules',
-                     state: '表单验证规则',
-                     mold: 'object',
-                     choose: '—',
-                     default: '—'
-                  },
+                //   {
+                //      parameter: 'rules',
+                //      state: '表单验证规则',
+                //      mold: 'object',
+                //      choose: '—',
+                //      default: '—'
+                //   },
                   {
                      parameter: 'inline',
                      state: '行内表单模式',
@@ -1152,13 +1153,13 @@
             },
             Item: {
                 data: [
-                  {
-                     parameter: 'prop',
-                     state: '表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的',
-                     mold: 'string',
-                     choose: '传入 Form 组件的 model 中的字段',
-                     default: '—'
-                  },
+                //   {
+                //      parameter: 'prop',
+                //      state: '表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的',
+                //      mold: 'string',
+                //      choose: '传入 Form 组件的 model 中的字段',
+                //      default: '—'
+                //   },
                   {
                      parameter: 'label',
                      state: '标签文本',
@@ -1180,13 +1181,13 @@
                      choose: '—',
                      default: 'false'
                   },
-                  {
-                     parameter: 'rules',
-                     state: '表单验证规则',
-                     mold: 'object',
-                     choose: '—',
-                     default: '—'
-                  },
+                //   {
+                //      parameter: 'rules',
+                //      state: '表单验证规则',
+                //      mold: 'object',
+                //      choose: '—',
+                //      default: '—'
+                //   },
                   {
                      parameter: 'error',
                      state: '表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息',

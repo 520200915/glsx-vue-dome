@@ -58,7 +58,7 @@ export default {
           ]
         },
         {
-          title: 'Basic',
+          title: '基础',
           list: [
             { text: 'Layout 布局', link: 'Layout' },
             { text: 'Container 布局容器', link: 'Container' },
@@ -67,7 +67,7 @@ export default {
           ]
         },
         {
-          title: 'Data',
+          title: '数据',
           list: [
             { text: 'Table 表格', link: 'Table' },
             { text: 'Tag 标签', link: 'Tag' },
@@ -78,7 +78,7 @@ export default {
           ]
         },
         {
-          title: 'Notice',
+          title: '通知',
           list: [
             { text: 'Alert 警告', link: 'Alert' },
             { text: 'Loading 加载', link: 'Loading' },
@@ -88,7 +88,7 @@ export default {
           ]
         },
         {
-          title: 'Navigation',
+          title: '导航',
           list: [
             { text: 'NavMenu 导航菜单', link: 'Menu' },
             { text: 'Tabs 标签页', link: 'Tabs' },
@@ -98,7 +98,7 @@ export default {
           ]
         },
         {
-          title: 'Others',
+          title: '其他',
           list: [
             { text: 'Dialog 对话框', link: 'Dialog' },
             { text: 'Tooltip 文字提示', link: 'Tooltip' },
@@ -109,7 +109,7 @@ export default {
           ]
         },
         {
-          title: 'Form',
+          title: '表单',
           list: [
             { text: 'Radio 单选框', link: 'Radio' },
             { text: 'Checkbox 多选框', link: 'Checkbox' },
