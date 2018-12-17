@@ -91,10 +91,14 @@ var time = null
         if(!this.manual) {
           this.show = false
         }
+      },
+      scroll() {
+        // console.log(window.scrollY)
       }
     },
     mounted() {
       this.show = this.value === true ? true : false
+      window.addEventListener('scroll', this.scroll)
     },
     computed: {
       className() {
@@ -106,46 +110,46 @@ var time = null
         setTimeout(_ => this.show = val,this.openDelay)
       },
       show(val) {
-        this.$emit('input',val)
+      this.$emit('input', val)
+      if (val) {
         const childer = this.$refs.trigger
         const box = this.$refs.box
-        if(val) {
-          switch (this.placement) {
-            case 'top':
-            case 'top-start':
-            case 'top-end':
-              this.style = {
-                left: 0,
-                top: `-${childer.offsetHeight + box.offsetHeight / 2}px`
-              }
-              break
-            case 'right':
-            case 'right-start':
-            case 'right-end':
-              this.style = {
-                right: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
-                top: 0
-              }
-              break
-            case 'bottom':
-            case 'bottom-start':
-            case 'bottom-end':
-              this.style = {
-                left: 0,
-                bottom: `-${(childer.offsetHeight + box.offsetHeight / 2)}px`
-              }
-              break
-            case 'left':
-            case 'left-start':
-            case 'left-end':
-              this.style = {
-                left: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
-                top: 0
-              }
-              break
-          }
+        switch (this.placement) {
+          case 'top':
+          case 'top-start':
+          case 'top-end':
+            this.style = {
+              left: 0,
+              top: `-${childer.offsetHeight + box.offsetHeight / 2}px`
+            }
+            break
+          case 'right':
+          case 'right-start':
+          case 'right-end':
+            this.style = {
+              right: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
+              top: 0
+            }
+            break
+          case 'bottom':
+          case 'bottom-start':
+          case 'bottom-end':
+            this.style = {
+              left: 0,
+              bottom: `-${(childer.offsetHeight + box.offsetHeight / 2)}px`
+            }
+            break
+          case 'left':
+          case 'left-start':
+          case 'left-end':
+            this.style = {
+              left: `-${(childer.offsetWidth + box.offsetWidth / 2) + 5}px`,
+              top: 0
+            }
+            break
         }
       }
+    }
     }
   }
 </script>
@@ -156,8 +160,6 @@ var time = null
     display: inline-block;
   }
   .gl-tooltip .tooltip{
-    width: auto;
-    height: auto;
     position: absolute;
     z-index: -1;
     background: #303133;
@@ -173,7 +175,7 @@ var time = null
   }
   .gl-tooltip .show{
     opacity: 1;
-    z-index: 2000;
+    z-index: 999999;
   }
   .gl-tooltip .arrow{
     position: absolute;

@@ -1,4 +1,4 @@
-import GlTooltip from './src/test'
+import GlTooltip from './src/main'
 GlTooltip.install = function(Vue) {
   Vue.component(GlTooltip.name, GlTooltip)
 }

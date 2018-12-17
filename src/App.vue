@@ -105,6 +105,7 @@ export default {
             { text: 'Popover 弹出框', link: 'Popover' },
             { text: 'Card 卡片', link: 'Card' },
             { text: 'Carousel 走马灯', link: 'Carousel' },
+            { text: 'Movable 可拖拽组件', link: 'Movable' },
             { text: 'Collapse 折叠面板', link: 'Collapse' }
           ]
         },

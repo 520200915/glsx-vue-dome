@@ -58,6 +58,8 @@ import Footer from './Footer'
 import Main from './Main'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
+import MovableView from './MovableView'
+import MovableArea from './MovableArea'
 import MenuItemGroup from './MenuGroup'
 import SubMenu from './SubMenu'
 import Option from './Option'
@@ -125,6 +127,8 @@ export {
   Main,
   Menu,
   MenuItem,
+  MovableView,
+  MovableArea,
   MenuItemGroup,
   SubMenu,
   Option,

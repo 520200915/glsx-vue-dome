@@ -30,6 +30,7 @@ import Badge from '@/components/Badge'
 import Alert from '@/components/Alert'
 import Loading from '@/components/Loading'
 import Message from '@/components/Message'
+import Movable from '@/components/Movable'
 import MessageBox from '@/components/MessageBox'
 import Notification from '@/components/Notification'
 import Menu from '@/components/Menu'
@@ -74,6 +75,7 @@ const routers = [
   Alert,
   Loading,
   Message,
+  Movable,
   MessageBox,
   Notification,
   Menu,

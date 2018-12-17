@@ -24,7 +24,7 @@ export default {
   },
 
   inject: {
-    elForm: {
+    glForm: {
       default: ''
     }
   },
@@ -117,7 +117,7 @@ export default {
 
   computed: {
     uploadDisabled() {
-      return this.disabled || (this.elForm || {}).disabled;
+      return this.disabled || (this.glForm || {}).disabled;
     }
   },
 

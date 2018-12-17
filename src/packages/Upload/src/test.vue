@@ -128,6 +128,9 @@
         onExceed: {
           type: Function
         }
+      },
+      mounted() {
+       console.log(this.action) 
       }
     }
 </script>

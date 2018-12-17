@@ -414,7 +414,6 @@
                             <span class="hljs-keyword">return</span> {
                                 <span class="hljs-attr">table6:</span>: {
                                     <span class="hljs-attr">border:</span> <span class="hljs-string">'true'</span>,
-                                    <span class="hljs-attr">defaultSort:</span> <span class="hljs-string">{prop: 'date', order: 'descending'}</span>,
                                     <span class="hljs-attr">data:</span> [
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-2</span>,
@@ -422,7 +421,7 @@
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
+                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518001'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-3</span>,
@@ -430,7 +429,7 @@
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
+                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518002'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-1</span>,
@@ -438,7 +437,7 @@
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
+                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518003'</span>
                                         },
                                         {
                                             <span class="hljs-attr">date:</span> <span class="hljs-string">2018-10-4</span>,
@@ -446,7 +445,7 @@
                                             <span class="hljs-attr">province:</span> <span class="hljs-string">'深圳'</span>,
                                             <span class="hljs-attr">city:</span> <span class="hljs-string">'南山区'</span>,
                                             <span class="hljs-attr">address:</span> <span class="hljs-string">'深圳市南山区科兴科学园C3栋7楼'</span>,
-                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518000'</span>
+                                            <span class="hljs-attr">zip:</span> <span class="hljs-string">'518004'</span>
                                         }
                                     ],
                                     <span class="hljs-attr">column:</span> [
@@ -454,7 +453,9 @@
                                             <span class="hljs-attr">label:</span> <span class="hljs-string">'日期'</span>,
                                             <span class="hljs-attr">prop:</span> <span class="hljs-string">'date'</span>,
                                             <span class="hljs-attr">width:</span> <span class="hljs-string">'180'</span>,
-                                            <span class="hljs-attr">fixed:</span> <span class="hljs-string">'left'</span>
+                                            <span class="hljs-attr">fixed:</span> <span class="hljs-string">'left'</span>,
+                                            <span class="hljs-attr">sortable:</span> <span class="hljs-string">true</span>,
+                                            <span class="hljs-attr">sortOrders:</span> <span class="hljs-string">['ascending']</span>
                                         },
                                         {
                                             <span class="hljs-attr">label:</span> <span class="hljs-string">'名称'</span>,
@@ -475,7 +476,9 @@
                                         },
                                         {
                                             <span class="hljs-attr">label:</span> <span class="hljs-string">'邮编'</span>,
-                                            <span class="hljs-attr">prop:</span> <span class="hljs-string">'zip'</span>
+                                            <span class="hljs-attr">prop:</span> <span class="hljs-string">'zip'</span>,
+                                            <span class="hljs-attr">sortable:</span> <span class="hljs-string">true</span>
+                                            <span class="hljs-attr">sortOrders:</span> <span class="hljs-string">['ascending']</span>
                                         }
                                     ],
                                     <span class="hljs-attr">console:</span> {
@@ -1336,7 +1339,10 @@
           },
           table6: {
               border: true,
-              defaultSort: {prop: 'date', order: 'descending'},
+            //   defaultSort: [
+            //       {prop: 'date', order: 'descending'},
+            //       {prop: 'zip', order: 'descending'}
+            //   ],
               data: [
                   {
                   date: '2018-10-2',
@@ -1344,7 +1350,7 @@
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
-                  zip: 518000
+                  zip: 518001
                   },
                   {
                   date: '2018-10-3',                  
@@ -1352,7 +1358,7 @@
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
-                  zip: 518000
+                  zip: 518002
                   },
                   {
                   date: '2018-10-1',
@@ -1360,7 +1366,7 @@
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
-                  zip: 518000
+                  zip: 518003
                   },
                   {
                   date: '2018-10-4',
@@ -1368,7 +1374,7 @@
                   province: '深圳',
                   city: '南山区',
                   address: '深圳市南山区科兴科学园C3栋7楼',
-                  zip: 518000
+                  zip: 518004
                   }
               ],
               column: [
@@ -1377,7 +1383,8 @@
                   prop: 'date',
                   width: '180',
                   fixed: 'left',
-                  sortable: true
+                  sortable: true,
+                  sortOrders: ['ascending']
                   },
                   {
                   label: '名称',
@@ -1402,7 +1409,9 @@
                   {
                   label: '邮编',
                   prop: 'zip',
-                  width: '120'
+                  width: '120',
+                  sortable: true,
+                  sortOrders: ['ascending']
                   }
               ],
               console: {

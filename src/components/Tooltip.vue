@@ -139,7 +139,7 @@
     <Code>
         <template slot='source'>
             <gl-tooltip placement="top">
-            <div slot="content">多行信息<br/>第二行信息</div>
+            <div slot="content">多行信息<br/>第二行信息\ddd<br/>第二行信息第二行信息</div>
             <gl-button>Top center</gl-button>
             </gl-tooltip>
         </template>

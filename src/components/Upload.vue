@@ -333,7 +333,7 @@
             class="upload-demo"
             ref="upload"
             action="https://jsonplaceholder.typicode.com/posts/"
-            :on-review="handlePreview"
+            :on-preview="handlePreview"
             :on-remove="handleRemove"
             :file-list="fileList"
             :auto-upload="false">
